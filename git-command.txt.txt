@@ -1,0 +1,21 @@
+commit
+=======
+git add *
+git add <filenames>
+git commit -m 'message'
+git push
+
+delete
+======
+git rm -r <filenames>
+git commit -m 'message'
+git push
+
+update
+======
+git pull/fetch
+git reset --hard
+
+check
+=====
+git status

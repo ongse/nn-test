@@ -1,0 +1,300 @@
+     8	15:04	aci -com "added signals for dump files comparison" alias_full_chip_coreless.v
+     9	15:36	aco -l spi_uncompressed_skip.dat
+    10	15:51	aci -com "initial creation" zb
+    11	15:52	aci -com "initial creation" zb_setting.sml
+    12	15:55	cd ../..
+    13	15:55	aco -l regression_spi.pl
+    14	16:29	aci -com "modify comments" zb_setting.sml
+    15	16:30	aci -com "added test for IOCSR & Ocre data dump and compare" spi_uncompressed_skip.v
+    16	16:45	aci -com "modified for auto checking" spi_uncompressed_skip.dat
+    17	16:46	aci -com "initial creation" spi_uncompressed_skip_iocsr.cff
+    18	16:49	aci -com "initial creation" spi_uncompressed_skip_core.cff
+    19	11:28	aco -l sdm_flash_mem.dat
+    20	14:03	cd pof
+    21	14:04	aci -com "debugged for SDM issue" zb
+    22	14:04	aci -com "debugged for SDM issue" zb_setting.sml
+    23	14:57	aunlock sdm_flash_mem.dat
+    24	14:58	cd ../../testbench/
+    25	14:59	aci -com "replace long path with a_cb" alias_full_chip_coreless.v
+    26	15:06	cd tests/stimulus/
+    27	15:06	aco -l spi_uncompressed_skip.v
+    28	16:28	run -t spi_uncompressed_skip -spi ST 8 TIME_OUT_VALUE 750000000
+    29	9:59	aunlock alias_full_chip_coreless.v
+    30	10:47	perl regression_spi.pl
+    31	13:27	run -t spi_uncompressed_skip -spi ST 8 TIME_OUT_VALUE 75000000
+    32	14:35	run -t sdm_uncompressed_skip_sanity -spi ST 8 TIME_OUT_VALUE 75000000
+    33	16:27	cd c8000
+    34	17:34	run -t sdm_uncompressed_skip_sanity -spi ST 8 TIME_OUT_VALUE 75000000 > vcs_regression_sdm.log
+    35	17:44	aci -com "ver 3 for multiframe" zb
+    36	17:44	aci -com "ver 3 for multiframe" zb_setting.sml
+    37	15:30	cd tests/
+    38	16:27	cd z1485a/verilog/
+    39	16:28	cd model
+    40	16:28	cd fcb/tests
+    41	17:08	aco -l alias_full_chip_coreless.v
+    42	17:10	aco -l task_config.v
+    43	17:19	run -t spi_uncompressed_skip_sanity -spi ST 8 TIME_OUT_VALUE 75000000
+    44	17:31	run -t spi_uncompressed_skip_sanity -spi ST 8 TIME_OUT_VALUE 75000000 > vcs_regression_sdm.log
+    45	18:01	aci -com "iocsr and core din compare" alias_full_chip_coreless.v
+    46	18:01	aci -com "iocsr and core din compare" task_config.v
+    47	18:01	cd ../tests/stimulus/
+    48	18:02	aci -com "iocsr and core din compare" din_compare.v
+    49	18:05	aci -com "iocsr and core din compare" spi_uncompressed_skip.v
+    50	18:07	aci -com "iocsr and core din compare" din_core.exp
+    51	18:07	aci -com "iocsr and core din compare" din_iocsr.exp
+    52	18:29	aco -l spi_uncompressed_skip_sanity.v
+    53	18:29	aci -com "iocsr and core din compare" spi_uncompressed_skip_sanity.v
+    54	18:40	aci -com "multiframe POF image generator" zb
+    55	18:41	aci -com "multiframe POF image generator" zb_setting.sml
+    56	15:12	run -t spi_uncompressed_skip_sanity -spi ST 8 TIME_OUT_VALUE 750000000
+    57	13:16	aci -com "iocsr and core din compare" sdm_uncompressed_skip_sanity.v
+    58	13:18	aci -com "iocsr and core din compare" din_sdm_iocsr.exp
+    59	13:18	aci -com "iocsr and core din compare" din_sdm_core.exp
+    60	13:19	aco -l sdm_uncompressed_skip_sanity.v
+    61	13:21	run -t sdm_uncompressed_skip_sanity -spi ST 8 TIME_OUT_VALUE 750000000
+    62	13:29	aci -com "modify expected output file name" sdm_uncompressed_skip_sanity.v
+    63	10:52	aci -com "added compression feature" zb
+    64	10:52	aci -com "added compression feature" zb_setting.sml
+    65	15:23	aci -com "debug compression feature" zb_setting.sml
+    66	18:58	aci -com "debug compression feature" zb
+    67	19:42	aci -com "added in feature for customize data" zb
+    68	19:42	aci -com "added in feature for customize data" zb_setting.sml
+    69	16:21	cd rtl
+    70	16:24	cd ../tests/
+    71	16:40	.zb
+    72	16:40	./zb
+    73	16:40	source zb
+    74	19:18	cd ../c8000/
+    75	14:39	run -t spi_compressed_skip_sanity -spi ST 8 TIME_OUT_VALUE 750000000
+    76	18:56	cd pat/POF_Generator
+    77	18:56	apop
+    78	19:16	rm zb
+    79	17:30	cd pat/
+    80	17:31	rm -rf zb
+    81	10:53	rm -rf .SYNC/
+    82	10:53	rm -rf POF_Generator
+    83	10:55	cd POF_Generator.bk/
+    84	11:02	aco -l test.dat
+    85	11:03	aunlock test.dat
+    86	11:03	cd POF_Generator
+    87	14:11	aco -v zb
+    88	16:52	rm -rf pat
+    89	10:50	aci -com "added SDM compression feature" zb
+    90	10:50	aci -com "added SDM compression feature" zb_setting.sml
+    91	18:11	aci -com "flip exp output" zb_setting.sml
+    92	18:11	aci -com "flip exp output" zb
+    93	19:24	aci -com "correction for after region switch" zb
+    94	18:23	apop -force -rec
+    95	18:27	ln -sf ../../c8000/include/jb_const.v
+    96	0:14	cd tests/pat/POF_Generator/
+    97	0:16	aci -com "debug for iocsr and core data output" zb
+    98	11:08	aci -com "added comments for SDM output and extra 4 nibbles for switch region" zb
+    99	11:08	aci -com "added comments for SDM output and extra 4 nibbles for switch region" zb_setting.sml
+   100	0:29	aci -com "add setting feature for filler between IOCSR and core" zb_setting.sml
+   101	0:29	aci -com "add setting feature for filler between IOCSR and core" zb
+   102	18:07	apop -force -rec -version g_ip_c8000_13ww32_4
+   103	18:15	apop -force -rec -version package_fcb_13ww32_4_withicb
+   104	18:28	; ;
+   105	18:29	basic_regression_all
+   106	16:37	vi sdm_decompression_skip_sanity.v
+   107	16:38	vi ../data/sdm_decompression_flash_mem.dat
+   108	16:39	vi ../data/sdm_flash_mem.dat
+   109	16:39	cd ../pat/
+   110	16:39	vi spi_decompression_skip_sanity.dat
+   111	16:40	cd data/
+   112	16:40	cd log/
+   113	16:40	up
+   114	16:40	ls
+   115	16:41	cat spi_decompression_skip_sanity.dat
+   116	16:41	cat basic_regression_sdm.list
+   117	16:41	ls -rtl
+   118	16:54	basic_regression_sdm
+   119	16:55	pl basic_regression_sdm
+   120	17:06	grep wave basic_regression_sdm.pl
+   121	17:06	grep -i wave basic_regression_sdm.pl
+   122	17:13	grep -i TIME *
+   123	17:13	grep -i 7500 *
+   124	17:13	grep -i 750000 *
+   125	18:29	kill -9 1147
+   126	18:30	kill -9 2034
+   127	18:30	ps
+   128	19:11	cd pat/POF_Generator/
+   129	19:13	aci -com "SDM decompression and eliminate SL setting" zb
+   130	19:13	aci -com "SDM decompression and eliminate SL setting" zb_setting.sml
+   131	20:07	apop -rec force
+   132	20:07	apop -force
+   133	11:00	cd ../lzippleback/
+   134	21:27	pl basic_regression_spi.pl
+   135	14:25	run regression_spi.pl
+   136	14:31	run regression_spi_short.pl
+   137	14:33	pl regression_spi_short.list
+   138	14:33	run regression_spi_short.list
+   139	14:36	basic_regression_spi
+   140	14:36	pl basic_regression_spi
+   141	14:39	pl
+   142	14:49	cd ../testbench/
+   143	14:49	cd c8000/
+   144	14:50	regression_spi_short
+   145	14:50	regression_spi_short.pl
+   146	14:51	cd ../fcb/
+   147	16:42	cd projects/lzippleback
+   148	16:42	cd verilog/
+   149	16:42	cd include
+   150	17:03	cd TTC/
+   151	17:03	cd acds
+   152	17:03	cd main
+   153	17:03	rm -rf TTC/
+   154	17:04	delete src
+   155	17:05	rm -f -r src
+   156	17:05	cd p4
+   157	17:06	rm -rf seong
+   158	17:06	cd z14
+   159	17:06	cd z1485a/
+   160	17:10	TRUNK - /net/octans/usr1/projects/lzippleback
+   161	17:42	apop -rec -version package_ww34p4_
+   162	10:18	cd ../lzippleback
+   163	10:26	cd ../lzippleback/verilog/fcb/test/
+   164	10:26	cd ../lzippleback/verilog/fcb/tests
+   165	11:12	basic_regression_spi_aes.pl
+   166	14:17	run
+   167	18:30	histiry
+   168	18:40	cd lzippleback/verilog/fcb/tests
+   169	18:45	cd include/
+   170	18:45	run -t spi_aes_uncompressed_skip_sanity -spi ST 8 TIME_OUT_VALUE 75000000 >> spi_aes_uncompressed_skip_sanity.log
+   171	10:59	mkdir Configuration
+   172	11:00	rm -rf pof
+   173	11:00	cd ../projects/
+   174	11:10	rm -rf lzippleback
+   175	11:10	rm -rf lzippleback__b_TLSCH1p0
+   176	11:10	rm -rf z1485a/
+   177	11:10	rm -rf designsync.log
+   178	11:12	mkdir seong
+   179	11:12	cd seong
+   180	11:17	rm -rf seong/
+   181	13:35	rm -rf lzippleback/
+   182	13:37	dovset
+   183	13:44	apop -rec -version package_ww34p4_SR_bugfix
+   184	13:47	apop -rec -version package_ww35p4_ft_sl_en_bugfix
+   185	13:48	apop -rec -version package_ww36p5_mblocksel_fix_n_aes_release
+   186	13:49	hisotry
+   187	13:50	cd ../z1485a/
+   188	13:50	apop -rec -version package_fcb_13ww32_4_withicb
+   189	13:52	mkdir lzippleback__b_TLSCH1p0
+   190	13:52	cd lzippleback__b_TLSCH1p0/
+   191	13:53	hisotyr
+   192	13:53	source /apps/scripts/design_sync.csh
+   193	13:54	dssc setvault "sync://sync-pg1:2647/Projects/lzippleback@TLSCH1p0:Latest,g_ip_c8000_13ww34p1_rtl_1p5_branch,Trunk:Latest" /net/octans/usr1/projects/lzippleback__b_TLSCH1p0
+   194	13:54	apop -rec -version g_ip_c8000_13ww36p5_RTL_2.0
+   195	13:57	cd lzippleback
+   196	13:58	cd verilog/fcb/tests
+   197	14:36	cd ../include/
+   198	14:36	apop -rec -force
+   199	14:37	cd ../tests
+   200	14:37	basic_regression_spi.pl
+   201	16:58	cd POF_Generator/
+   202	15:40	cp /net/octans/usr1/projects/lzippleback/verilog/fcb/tests/pat/POF_Generator/zb_setting.sml ./
+   203	15:43	aci -com "add SPI AES encryption feature" zb_setting.sml
+   204	17:13	aci -com "adding SPI Compression AES encryption feature" zb_setting.sml
+   205	18:16	aci -com "adding SPI Compression AES encryption feature" zb
+   206	18:16	aci -com "add SPI AES encryption feature" zb
+   207	18:20	aci -com "adding JTAG POF" zb
+   208	18:20	aci -com "adding JTAG POF" zb_setting.sml
+   209	11:05	aco -l zb_setting.sml
+   210	11:06	aco -l zb
+   211	11:06	cp /net/nobackup/ice_laptop/seong/pof/zb_setting.sml ./
+   212	11:06	cp /net/nobackup/ice_laptop/seong/pof/zb ./
+   213	11:07	aci -com "added 128-bit SDM POF generation" zb_setting.sml
+   214	11:08	zb
+   215	12:05	aci -com "added 128-bit SDM POF generation" zb
+   216	18:38	cd \\net\filer
+   217	18:38	cd
+   218	18:38	cd \net cd net\filer
+   219	18:38	cd \net
+   220	18:38	cd /net/filer
+   221	18:39	cd Configuratiojn
+   222	18:39	cd Configuration
+   223	18:39	cd usr2
+   224	18:39	cd Configuration/
+   225	18:48	cd fcb_zb50
+   226	18:48	cd lzippleback/veri
+   227	18:49	cd lzippleback/verilog/fcb/tests/
+   228	9:54	ll *.pl
+   229	9:55	basic_regression_sdm.pl
+   230	11:21	mv sdm_decompression_skip_sanity_zb50.vpd.not_working sdm_decompression_skip_sanity_zb50_not_working.vpd
+   231	11:21	cp sdm_decompression_skip_sanity_zb50.vpd.not_working sdm_decompression_skip_sanity_zb50_not_working.vpd
+   232	14:11	cp sdm_decompression_skip_sanity_zb50.vpd.not_working /net/octans/nobackup/projects/
+   233	15:01	cd ../ww44p5
+   234	15:02	cd lzippleback/verilog/fcb/tests/wfm/
+   235	15:02	mv sdm_decompression_skip_sanity.vpd.fail sdm_decompression_skip_sanity_fail.vpd
+   236	14:41	cd ../../../
+   237	14:41	cd ../../mr_bean/ww46p5/lzippleback/verilog/tests
+   238	14:41	cd ../../mr_bean/ww46p5/lzippleback/verilog/
+   239	14:42	cd fcb
+   240	14:42	cd tests
+   241	15:07	ll sdm*.*
+   242	15:13	ll *.dat
+   243	15:14	fine . -name "*decompress*.*"
+   244	15:14	find . -name "*decompress*.*"
+   245	15:15	find . -name "*sdm_decomp*.*"
+   246	15:15	find . -name "*sdm_decomp*.dat"
+   247	15:16	cp sdm_decompression_flash_mem.dat /net/octans/nobackup/projects/
+   248	16:04	cp /net/pg-
+   249	16:04	cp \\net\ice_laptop\seong
+   250	16:07	cp /net/nobackup/ICE_LAPTOP/SEONG/POF/sdm_compressed.dat ./
+   251	16:08	! 1253
+   252	17:29	rm -rf sdm_decompression_flash_mem.dat
+   253	17:30	cp /net/nobackup/ice_laptop/seong/pof/sdm_compressed.dat ./
+   254	17:30	mv sdm_compressed.dat sdm_decompression_flash_mem.dat
+   255	17:53	run -t sdm_decompression_skip_sanity -spi ST 8 TIME_OUT_VALUE 550000000
+   256	18:19	cd dat
+   257	16:32	cp /net/nobackup/ice_laptop/seong/pof/sdm_decompression_flash_mem.dat ./
+   258	16:32	run -t sdm_decompression_skip_sanity -spi ST 8 TIME_OUT_VALUE 55000000
+   259	17:35	cd stimulus
+   260	17:48	cd data
+   261	17:48	cd ../stimulus/
+   262	17:49	cat spi_aes_uncompressed_skip_sanity.v
+   263	17:50	cp spi_aes_uncompressed_skip_sanity.dat /net/nobackup/ice_laptop/seong/pof/
+   264	18:58	cd ..pat
+   265	17:37	cd stimulus/
+   267	15:59	gvim ../../c8000/rtl/aes/enc1.v
+   268	16:01	gvim ../../c8000/rtl/aes/aes_top.v
+   269	16:27	vim stimulus/spi_aes_uncompressed_skip_sanity.v
+   271	20:14	cd tests/pat/
+   272	20:14	cp /net/nobackup/ice_laptop/seong/pof/spi_aes_uncompressed_skip_sanity.dat ./
+   273	20:14	run -t spi_aes_uncompressed_skip_sanity -spi ST 8 TIME_OUT_VALUE 55000000
+   274	17:53	cd /net/filer/usr2/Configuration/mr_bean/ww51p3/lzippleback/verilog/fcb/test/pa
+   275	17:54	cd /net/filer/usr2/Configuration/mr_bean/ww51p3/lzippleback/verilog/fcb/tests/pat
+   276	18:09	cd ../../../../
+   277	18:09	cd ../
+   278	18:09	cd ../../
+   279	18:09	cd eew
+   280	18:09	cd ww50p3/
+   281	18:09	cd lzippleback/
+   282	18:09	cd verilog/fcb/tests/
+   283	18:09	cd pat
+   284	18:10	ll din*
+   285	18:10	cp din_core_zb2.exp /net/octans/nobackup/projects/usr/din_core_zb2_ori.exp
+   286	18:11	ll spi_uncompressed_skip_zb2
+   287	18:11	p spi_uncompressed_skip_sanity_zb2.dat /net/octans/nobackup/projects/usr/
+   288	18:12	sp spi_uncompressed_skip_sanity_zb2.dat /net/octans/nobackup/projects/usr/spi_uncompressed_skip_sanity_zb2_ori.dat
+   289	18:12	cp spi_uncompressed_skip_sanity_zb2.dat /net/octans/nobackup/projects/usr/spi_uncompressed_skip_sanity_zb2_ori.dat
+   290	21:13	cd /net/filer/usr2/Configuration/mr_bean/ww51p3/lzippleback/verilog/fcb/tests
+   291	21:13	cd wfm
+   293	21:43	cd log
+   294	21:43	cd ../wfm
+   297	17:00	cd /net/octans/nobackup/projects/seong/
+   298	17:00	type note.txt
+   299	17:02	cat note.txt
+   300	15:25	exit
+   302	15:40	cd /net/filer/usr2/Configuration/mr_bean/ww51p3/lzippleback/verilog/fcb/tests/
+   305	15:42	cd wfm/
+   306	15:42	ll
+   311	15:44	ll -t
+   312	15:46	cd ../pat
+   313	15:46	ll spi_aes_decompression_skip_sanity.dat
+   314	15:47	cp spi_aes_decompression_skip_sanity.dat /net/octans/nobackup/projects/seong/
+   315	15:51	cp /net/octans/nobackup/projects/seong/spi_aes_decompression_skip_sanity.dat ./
+   316	15:51	cd ..
+   318	15:52	run -t spi_aes_decompression_skip_sanity -spi ST 8 -ZB2 TIME_OUT_VALUE 55000000 > vcs_regression_spi_zb2_1.log
+   319	11:02	history
+   320	11:02	history > test_bean_log_feb14.txt

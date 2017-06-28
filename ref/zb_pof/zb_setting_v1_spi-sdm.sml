@@ -1,0 +1,11 @@
+<IOCSR_DATA=random>     //random, zero, one
+<IOCSR_FRAME=251>       //count in dword, 252 and 100
+<IOCSR_PAD=0>           //count in dword, the number showing here is in decimal
+<CORE_DATA=random>      //random, zero, one
+<CORE_FRAME=100>        //size in dword, the number showing here is in decimal
+<CORE_FT=72>            // the number showing here is in Hex
+<CORE_SL=65>            // the number showing here is in Hex
+<OUTPUT_FILENAME=output.dat>	//SPI POF Image File Name
+<SDM_FILENAME=sdm.dat>	        //SDM POF Image File Name
+<IOCSRCFF_FILE=iocsr.cff>	    //IOCSR expected output file name
+<CORECFF_FILE=core.cff>		    //CORE expected output file name

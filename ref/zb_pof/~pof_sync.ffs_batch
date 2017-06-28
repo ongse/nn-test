@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FreeFileSync XmlFormat="1" XmlType="BATCH">
+    <MainConfig>
+        <Comparison>
+            <Variant>ByTimeAndSize</Variant>
+            <HandleSymlinks>Ignore</HandleSymlinks>
+        </Comparison>
+        <SyncConfig>
+            <Variant>Mirror</Variant>
+            <CustomDirections>
+                <LeftOnly>right</LeftOnly>
+                <RightOnly>left</RightOnly>
+                <LeftNewer>right</LeftNewer>
+                <RightNewer>left</RightNewer>
+                <Different>none</Different>
+                <Conflict>none</Conflict>
+            </CustomDirections>
+            <DeletionPolicy>Permanent</DeletionPolicy>
+            <VersioningFolder Style="Replace"/>
+        </SyncConfig>
+        <GlobalFilter>
+            <Include>
+                <Item>*</Item>
+            </Include>
+            <Exclude>
+                <Item>\System Volume Information\</Item>
+                <Item>\$Recycle.Bin\</Item>
+                <Item>\RECYCLER\</Item>
+                <Item>\RECYCLED\</Item>
+                <Item>*\desktop.ini</Item>
+                <Item>*\thumbs.db</Item>
+            </Exclude>
+            <TimeSpan Type="Inactive">0</TimeSpan>
+            <SizeMin Unit="Inactive">0</SizeMin>
+            <SizeMax Unit="Inactive">0</SizeMax>
+        </GlobalFilter>
+        <FolderPairs>
+            <Pair>
+                <Left>X:\projects\seong\pof</Left>
+                <Right>J:\MyAltera\Projects\3-ZippleBack\ControlBlock\zb_pof\dev</Right>
+            </Pair>
+        </FolderPairs>
+        <OnCompletion>Close progress dialog</OnCompletion>
+    </MainConfig>
+    <BatchConfig>
+        <HandleError>Popup</HandleError>
+        <ShowProgress>true</ShowProgress>
+        <LogfileFolder Limit="0"/>
+    </BatchConfig>
+</FreeFileSync>

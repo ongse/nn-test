@@ -1,0 +1,4851 @@
+<!DOCTYPE html>
+	<html lang="en"  xmlns:fb="http://www.facebook.com/2008/fbml">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Reading And Writing Files In C - C/C++ Tutorials - Codecall</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<link rel="shortcut icon" href='http://forum.codecall.net/favicon.ico' />
+		<link rel="image_src" href='http://img.codecall.net/public/style_images/master/meta_image.png' />
+		<script type='text/javascript'>
+		//<![CDATA[
+			jsDebug			= 0; /* Must come before JS includes */
+			DISABLE_AJAX	= parseInt(0); /* Disables ajax requests where text is sent to the DB; helpful for charset issues */
+			inACP			= false;
+			var isRTL		= false;
+			var rtlIe		= '';
+			var rtlFull		= '';
+		//]]>
+		</script>
+		
+	
+				
+			<link rel="stylesheet" type="text/css" title="Main" media="screen,print" href="http://cdn.codecall.net/public/style_css/css_31/facebook_like_box.css?ipbv=723ed3878e697e9bb57686911b123aa4" />
+		
+	
+
+				
+			<link rel="stylesheet" type="text/css" title="Main" media="screen" href="http://cdn.codecall.net/public/style_css/css_31/calendar_select.css?ipbv=723ed3878e697e9bb57686911b123aa4" />
+		
+	
+
+				
+			<link rel="stylesheet" type="text/css" title="Main" media="screen,print" href="http://cdn.codecall.net/public/style_css/css_31/ipb_common.css?ipbv=723ed3878e697e9bb57686911b123aa4" />
+		
+	
+
+				
+			<link rel="stylesheet" type="text/css" title="Main" media="screen,print" href="http://cdn.codecall.net/public/style_css/css_31/ipb_styles.css?ipbv=723ed3878e697e9bb57686911b123aa4" />
+		
+	
+
+				
+			<link rel="stylesheet" type="text/css"  href="http://cdn.codecall.net/public/style_css/css_31/ipb_skingen.css?ipbv=723ed3878e697e9bb57686911b123aa4" />
+		
+	
+
+				
+			<link rel="stylesheet" type="text/css"  href="http://cdn.codecall.net/public/style_css/prettify.css?ipbv=723ed3878e697e9bb57686911b123aa4" />
+		
+	
+	
+
+<!--[if lte IE 7]>
+	<link rel="stylesheet" type="text/css" title='Main' media="screen" href="http://cdn.codecall.net/public/style_css/css_31/ipb_ie.css" />
+<![endif]-->
+<!--[if lte IE 8]>
+	<style type='text/css'>
+		.ipb_table { table-layout: fixed; }
+		.ipsLayout_content { width: 99.5%; }
+	</style>
+<![endif]-->
+
+	<style type='text/css'>
+		img.bbc_img { max-width: 100% !important; }
+	</style>
+
+		<meta property="og:title" content="Reading And Writing Files In C - C/C++ Tutorials"/>
+		<meta property="og:site_name" content="Codecall"/>
+		<meta property="og:type" content="article" />
+		
+	
+		
+		
+			<meta property="og:updated_time" content="1263425228" />
+		
+		
+		
+		
+	
+
+		
+		
+			<meta name="keywords" content="Reading,And,Writing,Files,This,tutorial,show,how,read,write,files,CAll,file,functions,need,stdioh,work,properlyThe,first,thing" />
+		
+		
+		
+		
+	
+
+		
+		
+			<meta name="description" content="Page 1 of 4 - Reading And Writing Files In C - posted in C/C++ Tutorials: This tutorial will show you how to read and write files in C.All file functions need &#60;stdio.h&#62; to work properly.The first thing you need to know about is file pointers. File pointers are like any other pointer, but they point to a file. (Kind of obvious). You define a file pointer as follows:FILE *filepointer;In order to make the file pointer point to a file you use the fopen function. The function works as f..." />
+		
+		
+		
+			<meta property="og:description" content="Page 1 of 4 - Reading And Writing Files In C - posted in C/C++ Tutorials: This tutorial will show you how to read and write files in C.All file functions need &#60;stdio.h&#62; to work properly.The first thing you need to know about is file pointers. File pointers are like any other pointer, but they point to a file. (Kind of obvious). You define a file pointer as follows:FILE *filepointer;In order to make the file pointer point to a file you use the fopen function. The function works as f..." />
+		
+		
+	
+
+		
+		
+			<meta name="identifier-url" content="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/" />
+		
+		
+			<meta property="og:url" content="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/" />
+		
+		
+		
+	
+
+<meta property="og:image" content="http://img.codecall.net/public/style_images/master/meta_image.png"/>
+		
+		
+		
+		<script type='text/javascript' src='http://cdn.codecall.net/public/js/3rd_party/prototype.js'></script>
+	
+	<script type='text/javascript' src='http://cdn.codecall.net/public/js/ipb.js?ipbv=723ed3878e697e9bb57686911b123aa4&amp;load=quickpm,hovercard,board,sharelinks,topic,rating,like'></script>
+	
+		<script type='text/javascript' src='http://cdn.codecall.net/public/js/3rd_party/scriptaculous/scriptaculous-cache.js'></script>
+	
+	<script type="text/javascript" src='http://cdn.codecall.net/cache/lang_cache/1/ipb.lang.js?nck=da753991037ed2e2624887a4706ef03d' charset='UTF-8'></script>
+
+
+	
+		
+			
+			
+			
+			
+				<link id="ipsCanonical" rel="canonical" href="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/" />
+			
+		
+
+			
+			
+			
+			
+				<link rel='stylesheet' type='text/css' title='Main' media='print' href='http://cdn.codecall.net/public/style_css/css_31/ipb_print.css' />
+			
+		
+
+			
+			
+			
+			
+				<link rel='next' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/page-2' />
+			
+		
+
+			
+			
+			
+			
+				<link rel='last' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/page-4' />
+			
+		
+
+			
+			
+			
+			
+				<link rel='up' href='http://forum.codecall.net/forum/161-cc-tutorials/' />
+			
+		
+
+			
+			
+			
+			
+				<link rel='author' href='http://forum.codecall.net/user/24233-guest/' />
+			
+		
+	
+
+		
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="Codecall Blogs RSS feed" href="http://forum.codecall.net/rss/blog/" />
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="Codecall RSS" href="http://forum.codecall.net/rss/forums/1-codecall-rss/" />
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="Articles: Java" href="http://forum.codecall.net/rss/ccs/1c21-java/" />
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="Articles: C#" href="http://forum.codecall.net/rss/ccs/1c22-c/" />
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="Articles: C/C++" href="http://forum.codecall.net/rss/ccs/1c23-cc/" />
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="Articles: PHP" href="http://forum.codecall.net/rss/ccs/1c24-php/" />
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="Articles: Others" href="http://forum.codecall.net/rss/ccs/1c18-others/" />
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="Articles: Product Reviews" href="http://forum.codecall.net/rss/ccs/1c20-product-reviews/" />
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="Media Demo: CODECALL YouTube Videos" href="http://forum.codecall.net/rss/ccs/4c19-codecall-youtube-videos/" />
+			
+			
+			
+		
+	
+
+	
+
+
+
+		
+		<script type='text/javascript'>
+	//<![CDATA[
+		/* ---- URLs ---- */
+		ipb.vars['base_url'] 			= 'http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&';
+		ipb.vars['board_url']			= 'http://forum.codecall.net';
+		ipb.vars['img_url'] 			= "http://img.codecall.net/public/style_images/master";
+		ipb.vars['loading_img'] 		= 'http://img.codecall.net/public/style_images/master/loading.gif';
+		ipb.vars['active_app']			= 'forums';
+		ipb.vars['upload_url']			= 'http://uploads.codecall.net';
+		/* ---- Member ---- */
+		ipb.vars['member_id']			= parseInt( 0 );
+		ipb.vars['is_supmod']			= parseInt( 0 );
+		ipb.vars['is_admin']			= parseInt( 0 );
+		ipb.vars['secure_hash'] 		= '880ea6a14ea49e853634fbdc5015a024';
+		ipb.vars['session_id']			= '76e5c068a90d819ddb2b3f1644961299';
+		ipb.vars['twitter_id']			= 0;
+		ipb.vars['fb_uid']				= 0;
+		ipb.vars['auto_dst']			= parseInt( 0 );
+		ipb.vars['dst_in_use']			= parseInt(  );
+		ipb.vars['is_touch']			= false;
+		ipb.vars['member_group']		= {"g_mem_info":"1"}
+		/* ---- cookies ----- */
+		ipb.vars['cookie_id'] 			= '';
+		ipb.vars['cookie_domain'] 		= '';
+		ipb.vars['cookie_path']			= '/';
+		/* ---- Rate imgs ---- */
+		ipb.vars['rate_img_on']			= 'http://img.codecall.net/public/style_images/master/star.png';
+		ipb.vars['rate_img_off']		= 'http://img.codecall.net/public/style_images/master/star_off.png';
+		ipb.vars['rate_img_rated']		= 'http://img.codecall.net/public/style_images/master/star_rated.png';
+		/* ---- Uploads ---- */
+		ipb.vars['swfupload_swf']		= 'http://forum.codecall.net/public/js/3rd_party/swfupload/swfupload.swf';
+		ipb.vars['swfupload_enabled']	= true;
+		ipb.vars['use_swf_upload']		= ( '' == 'flash' ) ? true : false;
+		ipb.vars['swfupload_debug']		= false;
+		/* ---- other ---- */
+		ipb.vars['highlight_color']     = "#ade57a";
+		ipb.vars['charset']				= "UTF-8";
+		ipb.vars['time_offset']			= "-8";
+		ipb.vars['hour_format']			= "12";
+		ipb.vars['seo_enabled']			= 1;
+		
+		ipb.vars['seo_params']			= {"start":"-","end":"\/","varBlock":"?","varPage":"page-","varSep":"&","varJoin":"="};
+		
+		/* Templates/Language */
+		ipb.templates['inlineMsg']		= "";
+		ipb.templates['ajax_loading'] 	= "<div id='ajax_loading'><img src='http://img.codecall.net/public/style_images/master/ajax_loading.gif' alt='" + ipb.lang['loading'] + "' /></div>";
+		ipb.templates['close_popup']	= "<img src='http://img.codecall.net/public/style_images/master/close_popup.png' alt='x' />";
+		ipb.templates['rss_shell']		= new Template("<ul id='rss_menu' class='ipbmenu_content'>#{items}</ul>");
+		ipb.templates['rss_item']		= new Template("<li><a href='#{url}' title='#{title}'>#{title}</a></li>");
+		
+		ipb.templates['autocomplete_wrap'] = new Template("<ul id='#{id}' class='ipb_autocomplete' style='width: 250px;'></ul>");
+		ipb.templates['autocomplete_item'] = new Template("<li id='#{id}' data-url='#{url}'><img src='#{img}' alt='' class='ipsUserPhoto ipsUserPhoto_mini' />&nbsp;&nbsp;#{itemvalue}</li>");
+		ipb.templates['page_jump']		= new Template("<div id='#{id}_wrap' class='ipbmenu_content'><h3 class='bar'>Jump to page</h3><p class='ipsPad'><input type='text' class='input_text' id='#{id}_input' size='8' /> <input type='submit' value='Go' class='input_submit add_folder' id='#{id}_submit' /></p></div>");
+		ipb.templates['global_notify'] 	= new Template("<div class='popupWrapper'><div class='popupInner'><div class='ipsPad'>#{message} #{close}</div></div></div>");
+		
+		
+		ipb.templates['header_menu'] 	= new Template("<div id='#{id}' class='ipsHeaderMenu boxShadow'></div>");
+		
+		Loader.boot();
+	//]]>
+	</script>
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17086927-1']);
+  _gaq.push(['_setDomainName', 'codecall.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script></head>
+	<body id='ipboard_body'>
+		<p id='content_jump' class='hide'><a id='top'></a><a href='#j_content' title='Jump to content' accesskey='m'>Jump to content</a></p>
+		<div id='ipbwrapper'>
+			<!-- ::: TOP BAR: Sign in / register or user drop down and notification alerts ::: -->
+			<div id='header_bar' class='clearfix'>
+				<div class='main_width'>
+					
+					<div id='user_navigation' class='not_logged_in'>
+							
+							<ul class='ipsList_inline right'>
+								<li>
+									<span class='services'>
+										
+											<a href='http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=login&amp;serviceClick=facebook'><img src='http://img.codecall.net/public/style_images/master/loginmethods/facebook.png' alt='Log in with Facebook' /></a>
+										
+										
+											<a href='http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=login&amp;serviceClick=twitter'><img src='http://img.codecall.net/public/style_images/master/loginmethods/twitter.png' alt='Log in with Twitter' /></a>
+										
+										
+									</span>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<a href='http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=login' title='Sign In' id='sign_in'>Sign In</a>&nbsp;&nbsp;&nbsp;
+								</li>
+								<li>
+									<a href="http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=register" title='Create Account' id='register_link'>Create Account</a>
+								</li>
+							</ul>
+						</div>
+				</div>
+			</div>
+			<!-- ::: BRANDING STRIP: Logo and search box ::: -->
+			<div id='branding'>
+				<div class='main_width'>
+					<div id='logo'>
+						
+							<a href='http://forum.codecall.net' title='Go to community index' rel="home" accesskey='1'><img src='http://forum.codecall.net/public/style_images/1_codecall_logo.png' alt='Logo' /></a>
+						
+					</div>
+					
+						<div id='search' class='right'>
+	<form action="http://forum.codecall.net/index.php?app=core&amp;module=search&amp;do=search&amp;fromMainBar=1" method="post" id='search-box' >
+		<fieldset>
+			<label for='main_search' class='hide'>Search</label>
+			<a href='http://forum.codecall.net/index.php?app=core&amp;module=search&amp;search_in=forums' title='Advanced Search' accesskey='4' rel="search" id='adv_search' class='right'>Advanced</a>
+			<span id='search_wrap' class='right'>
+				<input type='text' id='main_search' name='search_term' class='inactive' size='17' tabindex='100' />
+				<span class='choice ipbmenu clickable' id='search_options' style='display: none'></span>
+				<ul id='search_options_menucontent' class='ipbmenu_content ipsPad' style='display: none'>
+					<li class='title'><strong>Search section:</strong></li>
+					<li class='special'>
+							<label for='s_topic' title='This topic'>
+								
+									<input type='radio' name='search_app' value="forums:topic:51524" class='input_radio' id='s_topic' checked="checked" /> 
+								
+								<strong>This topic</strong>
+							</label>
+						</li>
+					
+					
+					<li class='app'><label for='s_forums' title='Forums'><input type='radio' name='search_app' class='input_radio' id='s_forums' value="forums"  />Forums</label></li><li class='app'><label for='s_members' title='Members'><input type='radio' name='search_app' class='input_radio' id='s_members' value="members"  />Members</label></li><li class='app'><label for='s_core' title='Help Files'><input type='radio' name='search_app' class='input_radio' id='s_core' value="core"  />Help Files</label></li>				
+						
+					
+				
+						<li class='app'>
+								<label for='s_blog' title='Blogs'>
+									<input type='radio' name='search_app' class='input_radio' id='s_blog' value="blog"  />
+									Blogs
+								</label>
+							</li>
+					
+				
+						<li class='app'>
+								<label for='s_gallery' title='Gallery'>
+									<input type='radio' name='search_app' class='input_radio' id='s_gallery' value="gallery"  />
+									Gallery
+								</label>
+							</li>
+					
+				
+						
+					
+				
+						
+					
+				
+						<li class='app'>
+								<label for='s_ccs' title='Pages'>
+									<input type='radio' name='search_app' class='input_radio' id='s_ccs' value="ccs"  />
+									Pages
+								</label>
+							</li>
+					
+				
+						
+					
+				
+						
+					
+				
+						
+					
+				
+						
+					
+				
+						
+					
+				
+						
+					
+				</ul>
+				<input type='submit' class='submit_input clickable' value='Search' />
+			</span>
+			
+		</fieldset>
+	</form>
+</div>
+					
+				</div>
+			</div>
+			<!-- ::: APPLICATION TABS ::: -->
+			<div id='primary_nav' class='clearfix'>
+				<div class='main_width'>
+					<ul class='ipsList_inline' id='community_app_menu'>
+						
+							<li class='right'>
+								<a href="http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=navigation&amp;inapp=forums" rel="quickNavigation" accesskey='9' id='quickNavLaunch' title='Open Quick Navigation'><span>&nbsp;</span></a>
+							</li>
+						
+						<li id='nav_explore' class='right'>
+							<a href='http://forum.codecall.net/index.php?app=core&amp;module=search&amp;do=viewNewContent&amp;search_app=forums' accesskey='2'>View New Content</a>
+						</li>
+						
+						
+								
+		
+			
+				
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+			
+			
+		
+
+			
+				
+																<li id='nav_menu_238' class="left skip_moremenu ">
+							<a id='nav_menu_238_trigger' href='http://forum.codecall.net/' title='Go to forum index' >Home <span class='dropdownIndicator'></span></a>
+							<div id='nav_menu_238_menucontent' class='submenu_container clearfix boxShadow' style='display: none'>
+									<div class="left">
+										<ul class="submenu_links">
+											
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/forum/216-general-forums/?utm_source=codecall&amp;utm_medium=menu&amp;utm_campaign=link' title='Join our general discussions' >General Forums</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/forum/122-language-forums/?utm_source=codecall&amp;utm_medium=menu&amp;utm_campaign=link' title='Find Q&amp;A for specific programming languages' >Language Forums</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/forum/218-tutorial-forums/?utm_source=codecall&amp;utm_medium=menu&amp;utm_campaign=link' title='Learn from tutorials in different programming languages' >Tutorial Forums</a></li>
+												
+											
+										</ul>
+									</div>
+								</div>
+								<script type='text/javascript'>
+									document.observe("dom:loaded", function(){
+										//$('content').insert( $('nav_menu_238_menucontent').remove() );
+										
+										new ipb.Menu( $('nav_menu_238_trigger'), $('nav_menu_238_menucontent'), { eventType: 'mouseover', closeOnMouseout: 'nav_menu_238' } );
+									});
+								</script>
+							
+						</li>
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+			
+			<li id='nav_app_blog' class="left "><a href='http://forum.codecall.net/blogs/' title='Go to Blogs' >Blogs</a></li>
+		
+
+			
+				
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+			
+			<li id='nav_app_gallery' class="left "><a href='http://forum.codecall.net/gallery/' title='Go to Gallery' >Gallery</a></li>
+		
+
+			
+				
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+																<li id='nav_menu_176' class="left skip_moremenu ">
+							<a id='nav_menu_176_trigger' href='http://forum.codecall.net/index.php?app=core&amp;module=search&amp;do=viewNewContent&amp;search_app=forums' title='Find out what&#39;s happening on Codecall.' >Community <span class='dropdownIndicator'></span></a>
+							<div id='nav_menu_176_menucontent' class='submenu_container clearfix boxShadow' style='display: none'>
+									<div class="left">
+										<ul class="submenu_links">
+											
+												
+													<li class='submenu_li'><a href='http://www.google.com/cse/publicurl?cx=009353018981250244325:qumksyqpcvw' title='Use Google CSE' >Search Site</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/forum/144-the-lounge/?utm_source=codecall&amp;utm_medium=menu&amp;utm_campaign=link' title='Relax and discuss anything with members' >Members Lounge</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/forum/145-introductions/?utm_source=codecall&amp;utm_medium=menu&amp;utm_campaign=link' title='Come by and say hello&#33;' >Introduce Yourself</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/gallery/' title='Member image gallery' >Image Gallery</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://www.facebook.com/codecallprogramming' title='Like on Facebook' >Facebook</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='https://twitter.com/codecall' title='Follow on Twitter' >Twitter</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://www.youtube.com/user/CodecallTutorials/videos?view=0' title='Watch tutorial videos' >YouTube</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/index.php?app=forums&amp;module=extras&amp;section=boardrules&amp;utm_source=codecall&amp;utm_medium=menu&amp;utm_campaign=link' title='Read forum guidelines' >Guidelines</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/forum-0/announcement-2-new-to-codecall-faq/?utm_source=codecall&amp;utm_medium=menu&amp;utm_campaign=link' title='Read FAQ' >FAQ</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/index.php?app=core&amp;module=help&amp;utm_source=codecall&amp;utm_medium=menu&amp;utm_campaign=link' title='How to use the site?' >Help</a></li>
+												
+											
+										</ul>
+									</div>
+								</div>
+								<script type='text/javascript'>
+									document.observe("dom:loaded", function(){
+										//$('content').insert( $('nav_menu_176_menucontent').remove() );
+										
+										new ipb.Menu( $('nav_menu_176_trigger'), $('nav_menu_176_menucontent'), { eventType: 'mouseover', closeOnMouseout: 'nav_menu_176' } );
+									});
+								</script>
+							
+						</li>
+				
+
+																<li id='nav_menu_233' class="left  ">
+							<a id='nav_menu_233_trigger' href='http://forum.codecall.net/index.php?app=forums&amp;module=extras&amp;section=toggle&amp;do=noReplies' title='Help answer some questions' >Unanswered </a>
+							
+							
+						</li>
+				
+
+										
+				
+
+																<li id='nav_menu_172' class="left skip_moremenu ">
+							<a id='nav_menu_172_trigger' href='http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=register' title='Ready to join Codecall' >Join Codecall.net <span class='dropdownIndicator'></span></a>
+							<div id='nav_menu_172_menucontent' class='submenu_container clearfix boxShadow' style='display: none'>
+									<div class="left">
+										<ul class="submenu_links">
+											
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/topic/74629-why-join-codecall/' title='A few good reasons' >Why Join Codecall?</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/interface/facebook/index.php?_reg=1' title='Use existing Facebook account' >Register with Facebook</a></li>
+												
+											
+
+												
+													<li class='submenu_li'><a href='http://forum.codecall.net/interface/twitter/index.php?_reg=1' title='Use existing Twitter account' >Register with Twitter</a></li>
+												
+											
+										</ul>
+									</div>
+								</div>
+								<script type='text/javascript'>
+									document.observe("dom:loaded", function(){
+										//$('content').insert( $('nav_menu_172_menucontent').remove() );
+										
+										new ipb.Menu( $('nav_menu_172_trigger'), $('nav_menu_172_menucontent'), { eventType: 'mouseover', closeOnMouseout: 'nav_menu_172' } );
+									});
+								</script>
+							
+						</li>
+				
+			
+			
+		
+
+			
+				
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+			
+			
+		
+
+			
+				
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+			
+			
+		
+
+			
+				
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+			
+			
+		
+
+			
+				
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+
+										
+				
+			
+			
+		
+	
+	
+		
+						
+		
+
+						
+		
+
+						
+		
+
+						
+		
+
+						
+		
+
+						
+		
+
+						
+		
+
+						
+		
+	
+						
+						<li id='nav_other_apps' style='display: none'>
+							<a href='#' class='ipbmenu' id='more_apps'>More <img src='http://img.codecall.net/public/style_images/master/useropts_arrow.png' /></a>
+						</li>
+					</ul>
+				</div>
+			</div>	
+			
+			<!-- ::: MAIN CONTENT AREA ::: -->
+			<div id='content' class='clearfix'>
+				<!-- ::: NAVIGATION BREADCRUMBS ::: -->
+				<div id='secondary_navigation' class='clearfix'>
+						<ol class='breadcrumb top ipsList_inline left'>
+														<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+									<a href='http://forum.codecall.net/' itemprop="url">
+										<span itemprop="title">Codecall</span>
+									</a>
+								</li>
+								
+							
+								<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+									<span class='nav_sep'>&rarr;</span>
+									 <a href='http://forum.codecall.net/forum/218-tutorial-forums/' title='Return to Tutorial Forums' itemprop="url"><span itemprop="title">Tutorial Forums</span></a>
+								</li>
+								
+							
+
+								<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+									<span class='nav_sep'>&rarr;</span>
+									 <a href='http://forum.codecall.net/forum/161-cc-tutorials/' title='Return to C/C++ Tutorials' itemprop="url"><span itemprop="title">C/C++ Tutorials</span></a>
+								</li>
+								
+							
+						</ol>
+					</div>
+					<br />
+				<noscript>
+					<div class='message error'>
+						<strong>Javascript Disabled Detected</strong>
+						<p>You currently have javascript disabled. Several functions may not work. Please re-enable javascript to access full functionality.</p>
+					</div>
+					<br />
+				</noscript>
+				<!-- ::: CONTENT ::: -->
+				
+					<div class='ipsAd'><div align='center' class='nexusad'><!-- BuySellAds Ad Code -->
+<script type="text/javascript">
+(function(){
+  var bsa = document.createElement('script');
+     bsa.type = 'text/javascript';
+     bsa.async = true;
+     bsa.src = 'http://s3.buysellads.com/ac/bsa.js';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+})();
+</script>
+<!-- End BuySellAds Ad Code -->
+
+<div style="width:750px ; height:90px ;margin-left: auto ;margin-right: auto ;">
+<!-- BuySellAds Zone Code -->
+<div id="bsap_1285537" class="bsarocks bsap_fe0c97c496643c0ab9c6ea026ef481e1"></div>
+<!-- End BuySellAds Zone Code -->
+</div>
+<br /></div></div>
+				
+				<div class='ipsLayout clearfix ipsLayout_withright ipsLayout_bigright' >
+	<div class='ipsLayout_right clearfix' style='margin-right: -335px; width: 330px;'>
+	<div id="index_stats">
+		
+<div id="index_stats"><div style="width:300px ; height:275px ;margin-left: auto ;margin-right: auto ;">
+<!-- BuySellAds Zone Code -->
+<div id="bsap_1285544" class="bsarocks bsap_fe0c97c496643c0ab9c6ea026ef481e1"></div>
+<!-- End BuySellAds Zone Code -->
+</div>
+<div class='ipsSideBlock clearfix'>
+	<h3>Recent Topics</h3>
+	<div class='_sbcollapsable'>
+		<ul class='ipsList_withminiphoto'>
+		
+		<li class='clearfix'>
+			
+	<a href='http://forum.codecall.net/user/51867-sproutpl/' class='ipsUserPhotoLink left'>
+
+<img src='http://www.gravatar.com/avatar/ac835ff0138286ef45303c2a7bef7f31?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+			<div class='list_content'>
+				<a href="http://forum.codecall.net/topic/75422-hi-i-am-a-developer-of-oop-languge-for-dbms/" rel='bookmark' class='ipsType_small' title='Hi&#33; I am a developer of OOP languge for DBMS - started  Today, 06:28 PM'>Hi&#33; I am a developer of OOP languge for DBMS</a>
+				<p class='desc ipsType_smaller'>
+					<a hovercard-ref="member" hovercard-id="51867" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/51867-sproutpl/' title='View Profile'><span itemprop="name">SproutPL</span></a>
+					- Today, 06:28 PM
+				</p>
+			</div>
+		</li>
+		
+
+		<li class='clearfix'>
+			
+	<a href='http://forum.codecall.net/user/51675-vitor11/' class='ipsUserPhotoLink left'>
+
+<img src='http://www.gravatar.com/avatar/8c8e6ebee997043f82f141b0ad956692?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+			<div class='list_content'>
+				<a href="http://forum.codecall.net/topic/75421-site-html/" rel='bookmark' class='ipsType_small' title='Site HTML - started  Today, 03:04 PM'>Site HTML</a>
+				<p class='desc ipsType_smaller'>
+					<a hovercard-ref="member" hovercard-id="51675" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/51675-vitor11/' title='View Profile'><span itemprop="name">vitor11</span></a>
+					- Today, 03:04 PM
+				</p>
+			</div>
+		</li>
+		
+
+		<li class='clearfix'>
+			
+	<a href='http://forum.codecall.net/user/50738-rsh/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-50738.jpeg?_r=1360345224' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+			<div class='list_content'>
+				<a href="http://forum.codecall.net/topic/75420-reversing-order-of-bytes-in-an-int/" rel='bookmark' class='ipsType_small' title='Reversing order of bytes in an int - started  Today, 02:50 PM'>Reversing order of bytes in an int</a>
+				<p class='desc ipsType_smaller'>
+					<a hovercard-ref="member" hovercard-id="50738" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/50738-rsh/' title='View Profile'><span itemprop="name">rsh</span></a>
+					- Today, 02:50 PM
+				</p>
+			</div>
+		</li>
+		
+
+		<li class='clearfix'>
+			
+	<a href='http://forum.codecall.net/user/34019-sorak05/' class='ipsUserPhotoLink left'>
+
+<img src='http://www.gravatar.com/avatar/8bdad5a8aa672be3b65eb639994aba10?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+			<div class='list_content'>
+				<a href="http://forum.codecall.net/topic/75419-another-compression-attempt/" rel='bookmark' class='ipsType_small' title='Another compression attempt :) - started  Today, 02:01 PM'>Another compression attempt :)</a>
+				<p class='desc ipsType_smaller'>
+					<a hovercard-ref="member" hovercard-id="34019" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/34019-sorak05/' title='View Profile'><span itemprop="name">SoraK05</span></a>
+					- Today, 02:01 PM
+				</p>
+			</div>
+		</li>
+		
+
+		<li class='clearfix'>
+			
+	<a href='http://forum.codecall.net/user/51866-keithaiden/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-51866.jpg?_r=1368147731' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+			<div class='list_content'>
+				<a href="http://forum.codecall.net/topic/75418-hello-all/" rel='bookmark' class='ipsType_small' title='Hello all - started  Today, 01:37 PM'>Hello all</a>
+				<p class='desc ipsType_smaller'>
+					<a hovercard-ref="member" hovercard-id="51866" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/51866-keithaiden/' title='View Profile'><span itemprop="name">KeithAiden</span></a>
+					- Today, 01:37 PM
+				</p>
+			</div>
+		</li>
+		
+		</ul>
+	</div>
+</div>
+<div class='ipsSideBlock clearfix'>
+	<h3>Recent Blog Entries</h3>
+	<ul class='ipsList_withminiphoto'>
+		
+			
+				<li class='clearfix'>
+					
+	<a href='http://forum.codecall.net/user/39714-skhacker/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-39714.jpg?_r=1365977778' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+					<div class='list_content'>
+						
+							<a href="http://forum.codecall.net/blog/1797/entry-1944-making-an-operating-system-from-basic-using-c/?show=newcomment"><img src='http://img.codecall.net/public/style_images/master/new_post.png' alt='' title='Go to first unread post' /></a>&nbsp;
+						
+						<a href="http://forum.codecall.net/blog/1797/entry-1944-making-an-operating-system-from-basic-using-c/">Making an Operating System from basic using C++</a>
+						<p class='desc ipsType_smaller'>
+							<a href='http://forum.codecall.net/blog/1797-program-mania/'>Program Mania</a> <span class='desc lighter ipsType_smaller'>01 May</span>
+						</p>
+					</div>
+				</li>
+			
+
+				<li class='clearfix'>
+					
+	<a href='http://forum.codecall.net/user/31584-lespauled/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-31584.gif?_r=0' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+					<div class='list_content'>
+						
+							<a href="http://forum.codecall.net/blog/1699/entry-1942-the-tide-is-turning/?show=newcomment"><img src='http://img.codecall.net/public/style_images/master/new_post.png' alt='' title='Go to first unread post' /></a>&nbsp;
+						
+						<a href="http://forum.codecall.net/blog/1699/entry-1942-the-tide-is-turning/">The tide is turning</a>
+						<p class='desc ipsType_smaller'>
+							<a href='http://forum.codecall.net/blog/1699-blog-77241/'>lespauled's Blog</a> <span class='desc lighter ipsType_smaller'>25 Apr</span>
+						</p>
+					</div>
+				</li>
+			
+
+				<li class='clearfix'>
+					
+	<a href='http://forum.codecall.net/user/39714-skhacker/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-39714.jpg?_r=1365977778' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+					<div class='list_content'>
+						
+							<a href="http://forum.codecall.net/blog/1797/entry-1941-human-face-part-detection-using-matlab/?show=newcomment"><img src='http://img.codecall.net/public/style_images/master/new_post.png' alt='' title='Go to first unread post' /></a>&nbsp;
+						
+						<a href="http://forum.codecall.net/blog/1797/entry-1941-human-face-part-detection-using-matlab/">Human face part detection using MATLAB</a>
+						<p class='desc ipsType_smaller'>
+							<a href='http://forum.codecall.net/blog/1797-program-mania/'>Program Mania</a> <span class='desc lighter ipsType_smaller'>23 Apr</span>
+						</p>
+					</div>
+				</li>
+			
+
+				<li class='clearfix'>
+					
+	<a href='http://forum.codecall.net/user/39714-skhacker/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-39714.jpg?_r=1365977778' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+					<div class='list_content'>
+						
+							<a href="http://forum.codecall.net/blog/1797/entry-1940-matlab-code-for-human-motion-detection/?show=newcomment"><img src='http://img.codecall.net/public/style_images/master/new_post.png' alt='' title='Go to first unread post' /></a>&nbsp;
+						
+						<a href="http://forum.codecall.net/blog/1797/entry-1940-matlab-code-for-human-motion-detection/">Matlab Code For Human Motion Detection</a>
+						<p class='desc ipsType_smaller'>
+							<a href='http://forum.codecall.net/blog/1797-program-mania/'>Program Mania</a> <span class='desc lighter ipsType_smaller'>23 Apr</span>
+						</p>
+					</div>
+				</li>
+			
+
+				<li class='clearfix'>
+					
+	<a href='http://forum.codecall.net/user/31584-lespauled/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-31584.gif?_r=0' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+					<div class='list_content'>
+						
+							<a href="http://forum.codecall.net/blog/1699/entry-1939-how-many-times-do-i-have-to-do-something-before-i-fix-it/?show=newcomment"><img src='http://img.codecall.net/public/style_images/master/new_post.png' alt='' title='Go to first unread post' /></a>&nbsp;
+						
+						<a href="http://forum.codecall.net/blog/1699/entry-1939-how-many-times-do-i-have-to-do-something-before-i-fix-it/">How many times do I have to do something before I fix it?</a>
+						<p class='desc ipsType_smaller'>
+							<a href='http://forum.codecall.net/blog/1699-blog-77241/'>lespauled's Blog</a> <span class='desc lighter ipsType_smaller'>12 Apr</span>
+						</p>
+					</div>
+				</li>
+			
+		
+	</ul>
+</div><script type='text/javascript' src="http://forum.codecall.net/public/js/ips.status.js"></script>
+<div class='ipsSideBlock clearfix' id='statusHook'>
+	<h3>Recent Status Updates</h3>
+	<div class='_sbcollapsable'>
+		<div id="status_wrapper">
+			<div id="status_wrapper_inside"><script type="text/javascript">
+	ipb.status.maxReplies = 100;
+	ipb.status.smallSpace = 1;
+	ipb.status.skin_group = 'boards';
+</script>
+	
+	<ul class='ipsList_withminiphoto status_list' id='statusWrap-4863'>
+		<li class='clearfix'>
+			
+	<a href='http://forum.codecall.net/user/51738-zexanima/' class='ipsUserPhotoLink left'>
+
+<img src='http://www.gravatar.com/avatar/22a820c154de893f37e5880712f69872?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+			<div class='list_content'>
+				<div id="statusContent-4863">
+					<div class='right desc lighter'>
+						<span class='desc mod_links ipsType_smaller'>
+							
+							<span id='statusUnlock-4863' style='display:none'> &middot; <a rel="nofollow"  href="http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=members&amp;module=profile&amp;section=status&amp;do=unlockStatus&amp;status_id=4863&amp;k=880ea6a14ea49e853634fbdc5015a024" id="statusUnlockLink-4863" class="__sU __u4863">Unlock</a></span>
+							<span id='statusLock-4863' style='display:none'> &middot; <a rel="nofollow"  href="http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=members&amp;module=profile&amp;section=status&amp;do=lockStatus&amp;status_id=4863&amp;k=880ea6a14ea49e853634fbdc5015a024" id="statusLockLink-4863" class="__sL __l4863">Lock</a></span>
+						</span>
+						&nbsp;&nbsp;<span class='ipsType_smaller blend_links'><a href='http://forum.codecall.net/statuses/user/51738-zexanima/?status_id=4863'>06 May</a></span>
+					</div>
+					<a hovercard-ref="member" hovercard-id="51738" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/51738-zexanima/' title='View Profile'><span itemprop="name">Zexanima</span></a>
+					<p class='index_status_update ipsType_small'>Meat&#33;</p>
+					<span class='desc' id='statusToggle-4863'>
+						<img src="http://img.codecall.net/public/style_images/master/icon_lock.png" id='statusLockImg-4863' alt="Locked Status" style='display: none' />
+						
+						
+					</span>
+					<span class='desc' id='statusToggleOff-4863' style='display:none'>
+						<a href="#" class="__sTO __to4863">Hide Comments</a>
+					</span>
+				</div>
+			</div>
+			<div id="statusFeedback-4863" class='status_feedback' style='display:none'>
+				<div class='ipsList_withtinyphoto status_list' id='statusReplies-4863'>
+					
+						<div id='statusReplyBlank-4863' style='display: none'></div>
+					
+				</div>
+				
+			</div>
+		</li>
+	</ul>
+
+
+	
+	<ul class='ipsList_withminiphoto status_list' id='statusWrap-4861'>
+		<li class='clearfix'>
+			
+	<a href='http://forum.codecall.net/user/34966-thryckz/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-34966.png?_r=1348740860' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+			<div class='list_content'>
+				<div id="statusContent-4861">
+					<div class='right desc lighter'>
+						<span class='desc mod_links ipsType_smaller'>
+							
+							<span id='statusUnlock-4861' style='display:none'> &middot; <a rel="nofollow"  href="http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=members&amp;module=profile&amp;section=status&amp;do=unlockStatus&amp;status_id=4861&amp;k=880ea6a14ea49e853634fbdc5015a024" id="statusUnlockLink-4861" class="__sU __u4861">Unlock</a></span>
+							<span id='statusLock-4861' style='display:none'> &middot; <a rel="nofollow"  href="http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=members&amp;module=profile&amp;section=status&amp;do=lockStatus&amp;status_id=4861&amp;k=880ea6a14ea49e853634fbdc5015a024" id="statusLockLink-4861" class="__sL __l4861">Lock</a></span>
+						</span>
+						&nbsp;&nbsp;<span class='ipsType_smaller blend_links'><a href='http://forum.codecall.net/statuses/user/34966-thryckz/?status_id=4861'>29 Apr</a></span>
+					</div>
+					<a hovercard-ref="member" hovercard-id="34966" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/34966-thryckz/' title='View Profile'><span itemprop="name">Thryckz</span></a>
+					<p class='index_status_update ipsType_small'>I AM CRAVING BIRCH BEER.</p>
+					<span class='desc' id='statusToggle-4861'>
+						<img src="http://img.codecall.net/public/style_images/master/icon_lock.png" id='statusLockImg-4861' alt="Locked Status" style='display: none' />
+						
+						
+								<a href="#" class="__sT __t4861 ipsType_smaller">Show comments (2)</a>
+							
+					</span>
+					<span class='desc' id='statusToggleOff-4861' style='display:none'>
+						<a href="#" class="__sTO __to4861">Hide Comments</a>
+					</span>
+				</div>
+			</div>
+			<div id="statusFeedback-4861" class='status_feedback' style='display:none'>
+				<div class='ipsList_withtinyphoto status_list' id='statusReplies-4861'>
+					
+						
+	<div id='statusReply-156' class='ipsPad_half'>
+		
+	<a href='http://forum.codecall.net/user/51496-jasonknight/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-51496.jpg?_r=1368151390' alt='JasonKnight&#39;s Photo' class='ipsUserPhoto ipsUserPhoto_tiny' />
+
+	</a>
+
+		<div class='list_content'>
+			<div class='right lighter'>
+				<span class='desc ipsType_smaller'>30 Apr&nbsp;&nbsp;</span>
+				<span class='desc mod_links ipsType_smaller'>
+					
+				</span>
+			</div>
+			<strong><a hovercard-ref="member" hovercard-id="51496" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/51496-jasonknight/' title='View Profile'><span itemprop="name">JasonKnight</span></a></strong>
+			<p class='index_status_update ipsType_small'>Love the stuff, but it doesn&#39;t love me. Triggers migraines that make a really good ice cream headache feel like nothing.</p>
+		</div>
+	</div>
+	
+
+
+	<div id='statusReply-159' class='ipsPad_half'>
+		
+	<a href='http://forum.codecall.net/user/34966-thryckz/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-34966.png?_r=1348740860' alt='Thryckz&#39;s Photo' class='ipsUserPhoto ipsUserPhoto_tiny' />
+
+	</a>
+
+		<div class='list_content'>
+			<div class='right lighter'>
+				<span class='desc ipsType_smaller'>04 May&nbsp;&nbsp;</span>
+				<span class='desc mod_links ipsType_smaller'>
+					
+				</span>
+			</div>
+			<strong><a hovercard-ref="member" hovercard-id="34966" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/34966-thryckz/' title='View Profile'><span itemprop="name">Thryckz</span></a></strong>
+			<p class='index_status_update ipsType_small'>Sucks for you&#33;<br />Can&#39;t say the same for me...mhmm...guess what I&#39;m enjoying right now? That&#39;s right.</p>
+		</div>
+	</div>
+	
+		<div id='statusReplyBlank-4861' style='display: none'></div>
+	
+
+
+				</div>
+				
+			</div>
+		</li>
+	</ul>
+
+
+	
+	<ul class='ipsList_withminiphoto status_list' id='statusWrap-4860'>
+		<li class='clearfix'>
+			
+	<a href='http://forum.codecall.net/user/51736-shoush/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-51736.jpg?_r=1367943901' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+			<div class='list_content'>
+				<div id="statusContent-4860">
+					<div class='right desc lighter'>
+						<span class='desc mod_links ipsType_smaller'>
+							
+							<span id='statusUnlock-4860' style='display:none'> &middot; <a rel="nofollow"  href="http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=members&amp;module=profile&amp;section=status&amp;do=unlockStatus&amp;status_id=4860&amp;k=880ea6a14ea49e853634fbdc5015a024" id="statusUnlockLink-4860" class="__sU __u4860">Unlock</a></span>
+							<span id='statusLock-4860' style='display:none'> &middot; <a rel="nofollow"  href="http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=members&amp;module=profile&amp;section=status&amp;do=lockStatus&amp;status_id=4860&amp;k=880ea6a14ea49e853634fbdc5015a024" id="statusLockLink-4860" class="__sL __l4860">Lock</a></span>
+						</span>
+						&nbsp;&nbsp;<span class='ipsType_smaller blend_links'><a href='http://forum.codecall.net/statuses/user/51736-shoush/?status_id=4860'>28 Apr</a></span>
+					</div>
+					<a hovercard-ref="member" hovercard-id="51736" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/51736-shoush/' title='View Profile'><span itemprop="name">Shoush</span></a>
+					<p class='index_status_update ipsType_small'>Enjoy today because there might not be a tomorrow. Sometimes, there are no next times and no second chances.</p>
+					<span class='desc' id='statusToggle-4860'>
+						<img src="http://img.codecall.net/public/style_images/master/icon_lock.png" id='statusLockImg-4860' alt="Locked Status" style='display: none' />
+						
+						
+								<a href="#" class="__sT __t4860 ipsType_smaller">Show comments (2)</a>
+							
+					</span>
+					<span class='desc' id='statusToggleOff-4860' style='display:none'>
+						<a href="#" class="__sTO __to4860">Hide Comments</a>
+					</span>
+				</div>
+			</div>
+			<div id="statusFeedback-4860" class='status_feedback' style='display:none'>
+				<div class='ipsList_withtinyphoto status_list' id='statusReplies-4860'>
+					
+						
+	<div id='statusReply-154' class='ipsPad_half'>
+		
+	<a href='http://forum.codecall.net/user/34966-thryckz/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-34966.png?_r=1348740860' alt='Thryckz&#39;s Photo' class='ipsUserPhoto ipsUserPhoto_tiny' />
+
+	</a>
+
+		<div class='list_content'>
+			<div class='right lighter'>
+				<span class='desc ipsType_smaller'>29 Apr&nbsp;&nbsp;</span>
+				<span class='desc mod_links ipsType_smaller'>
+					
+				</span>
+			</div>
+			<strong><a hovercard-ref="member" hovercard-id="34966" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/34966-thryckz/' title='View Profile'><span itemprop="name">Thryckz</span></a></strong>
+			<p class='index_status_update ipsType_small'>Such an optimistic post.</p>
+		</div>
+	</div>
+	
+
+
+	<div id='statusReply-155' class='ipsPad_half'>
+		
+	<a href='http://forum.codecall.net/user/30595-ritwik-i-the-programmer/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-30595.jpg?_r=1360806665' alt='Ritwik I the programmer&#39;s Photo' class='ipsUserPhoto ipsUserPhoto_tiny' />
+
+	</a>
+
+		<div class='list_content'>
+			<div class='right lighter'>
+				<span class='desc ipsType_smaller'>29 Apr&nbsp;&nbsp;</span>
+				<span class='desc mod_links ipsType_smaller'>
+					
+				</span>
+			</div>
+			<strong><a hovercard-ref="member" hovercard-id="30595" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/30595-ritwik-i-the-programmer/' title='View Profile'><span itemprop="name">Ritwik I the programmer</span></a></strong>
+			<p class='index_status_update ipsType_small'>Hope for the best, prepare for the worst. You may die tomorrow, doesn&#39;t mean you become a bankrupt today.</p>
+		</div>
+	</div>
+	
+		<div id='statusReplyBlank-4860' style='display: none'></div>
+	
+
+
+				</div>
+				
+			</div>
+		</li>
+	</ul>
+
+
+	
+	<ul class='ipsList_withminiphoto status_list' id='statusWrap-4859'>
+		<li class='clearfix'>
+			
+	<a href='http://forum.codecall.net/user/29035-tonchi/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-29035.jpg?_r=1364657003' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+			<div class='list_content'>
+				<div id="statusContent-4859">
+					<div class='right desc lighter'>
+						<span class='desc mod_links ipsType_smaller'>
+							
+							<span id='statusUnlock-4859' style='display:none'> &middot; <a rel="nofollow"  href="http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=members&amp;module=profile&amp;section=status&amp;do=unlockStatus&amp;status_id=4859&amp;k=880ea6a14ea49e853634fbdc5015a024" id="statusUnlockLink-4859" class="__sU __u4859">Unlock</a></span>
+							<span id='statusLock-4859' style='display:none'> &middot; <a rel="nofollow"  href="http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=members&amp;module=profile&amp;section=status&amp;do=lockStatus&amp;status_id=4859&amp;k=880ea6a14ea49e853634fbdc5015a024" id="statusLockLink-4859" class="__sL __l4859">Lock</a></span>
+						</span>
+						&nbsp;&nbsp;<span class='ipsType_smaller blend_links'><a href='http://forum.codecall.net/statuses/user/29035-tonchi/?status_id=4859'>26 Apr</a></span>
+					</div>
+					<a hovercard-ref="member" hovercard-id="29035" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/29035-tonchi/' title='View Profile'><span itemprop="name">Tonchi</span></a>
+					<p class='index_status_update ipsType_small'>After almost 2 years, I am cleaning up my computer.</p>
+					<span class='desc' id='statusToggle-4859'>
+						<img src="http://img.codecall.net/public/style_images/master/icon_lock.png" id='statusLockImg-4859' alt="Locked Status" style='display: none' />
+						
+						
+					</span>
+					<span class='desc' id='statusToggleOff-4859' style='display:none'>
+						<a href="#" class="__sTO __to4859">Hide Comments</a>
+					</span>
+				</div>
+			</div>
+			<div id="statusFeedback-4859" class='status_feedback' style='display:none'>
+				<div class='ipsList_withtinyphoto status_list' id='statusReplies-4859'>
+					
+						<div id='statusReplyBlank-4859' style='display: none'></div>
+					
+				</div>
+				
+			</div>
+		</li>
+	</ul>
+
+
+	
+	<ul class='ipsList_withminiphoto status_list' id='statusWrap-4857'>
+		<li class='clearfix'>
+			
+	<a href='http://forum.codecall.net/user/48554-sfprogrammer/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-48554.jpg?_r=1356722356' alt='Photo' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+			<div class='list_content'>
+				<div id="statusContent-4857">
+					<div class='right desc lighter'>
+						<span class='desc mod_links ipsType_smaller'>
+							
+							<span id='statusUnlock-4857' style='display:none'> &middot; <a rel="nofollow"  href="http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=members&amp;module=profile&amp;section=status&amp;do=unlockStatus&amp;status_id=4857&amp;k=880ea6a14ea49e853634fbdc5015a024" id="statusUnlockLink-4857" class="__sU __u4857">Unlock</a></span>
+							<span id='statusLock-4857' style='display:none'> &middot; <a rel="nofollow"  href="http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=members&amp;module=profile&amp;section=status&amp;do=lockStatus&amp;status_id=4857&amp;k=880ea6a14ea49e853634fbdc5015a024" id="statusLockLink-4857" class="__sL __l4857">Lock</a></span>
+						</span>
+						&nbsp;&nbsp;<span class='ipsType_smaller blend_links'><a href='http://forum.codecall.net/statuses/user/48554-sfprogrammer/?status_id=4857'>24 Apr</a></span>
+					</div>
+					<a hovercard-ref="member" hovercard-id="48554" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/48554-sfprogrammer/' title='View Profile'><span itemprop="name">SFProgrammer</span></a>
+					<p class='index_status_update ipsType_small'>Put some Curry on that&#33; I like it Hot&#33;</p>
+					<span class='desc' id='statusToggle-4857'>
+						<img src="http://img.codecall.net/public/style_images/master/icon_lock.png" id='statusLockImg-4857' alt="Locked Status" style='display: none' />
+						
+						
+					</span>
+					<span class='desc' id='statusToggleOff-4857' style='display:none'>
+						<a href="#" class="__sTO __to4857">Hide Comments</a>
+					</span>
+				</div>
+			</div>
+			<div id="statusFeedback-4857" class='status_feedback' style='display:none'>
+				<div class='ipsList_withtinyphoto status_list' id='statusReplies-4857'>
+					
+						<div id='statusReplyBlank-4857' style='display: none'></div>
+					
+				</div>
+				
+			</div>
+		</li>
+	</ul>
+
+</div>
+			<div class="status_main_content ipsType_small" style='text-align: center'>
+				<a href='http://forum.codecall.net/statuses/all/'>View All Updates</a>
+			</div>
+		</div>
+	</div>
+</div><div align='center' class='nexusad'><div style="width:300px ; height:275px ;margin-left: auto ;margin-right: auto ;">
+<!-- BuySellAds Zone Code -->
+<div id="bsap_1285484" class="bsarocks bsap_fe0c97c496643c0ab9c6ea026ef481e1"></div>
+<!-- End BuySellAds Zone Code -->
+</div></div><div class='ipsSideBlock clearfix'>
+	<h3>Popular Tags</h3>
+	<div class='_sbcollapsable'>
+		<ul class='ipsList_inline'>
+		
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/Managed%2BC%2B%2B/" data-tooltip="Find more content tagged 'Managed C++'"><span>Managed C++</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/networking/" data-tooltip="Find more content tagged 'networking'"><span>networking</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/stream/" data-tooltip="Find more content tagged 'stream'"><span>stream</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/c/" data-tooltip="Find more content tagged 'c'"><span>c</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/Visual%2BBasic%2B4%2B%252F%2B5%2B%252F%2B6/" data-tooltip="Find more content tagged 'Visual Basic 4 / 5 / 6'"><span>Visual Basic 4 / 5 / 6</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/console/" data-tooltip="Find more content tagged 'console'"><span>console</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/Connection/" data-tooltip="Find more content tagged 'Connection'"><span>Connection</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/import/" data-tooltip="Find more content tagged 'import'"><span>import</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/blog/programming/" data-tooltip="Find more content tagged 'programming'"><span>programming</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/authentication/" data-tooltip="Find more content tagged 'authentication'"><span>authentication</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/element/" data-tooltip="Find more content tagged 'element'"><span>element</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/syntax/" data-tooltip="Find more content tagged 'syntax'"><span>syntax</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/hardware/" data-tooltip="Find more content tagged 'hardware'"><span>hardware</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/session/" data-tooltip="Find more content tagged 'session'"><span>session</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/sql/" data-tooltip="Find more content tagged 'sql'"><span>sql</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_1"><a  href="http://forum.codecall.net/tags/blog/array/" data-tooltip="Find more content tagged 'array'"><span>array</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/blog/printing/" data-tooltip="Find more content tagged 'printing'"><span>printing</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/generator/" data-tooltip="Find more content tagged 'generator'"><span>generator</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/header/" data-tooltip="Find more content tagged 'header'"><span>header</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/html5/" data-tooltip="Find more content tagged 'html5'"><span>html5</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/stack/" data-tooltip="Find more content tagged 'stack'"><span>stack</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/blog/javascript/" data-tooltip="Find more content tagged 'javascript'"><span>javascript</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_4"><a  href="http://forum.codecall.net/tags/forums/mysql/" data-tooltip="Find more content tagged 'mysql'"><span>mysql</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_4"><a  href="http://forum.codecall.net/tags/forums/string/" data-tooltip="Find more content tagged 'string'"><span>string</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_6"><a  href="http://forum.codecall.net/tags/forums/loop/" data-tooltip="Find more content tagged 'loop'"><span>loop</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_6"><a  href="http://forum.codecall.net/tags/forums/timer/" data-tooltip="Find more content tagged 'timer'"><span>timer</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_6"><a  href="http://forum.codecall.net/tags/blog/c%2B%2B/" data-tooltip="Find more content tagged 'c++'"><span>c++</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_7"><a  href="http://forum.codecall.net/tags/forums/java/" data-tooltip="Find more content tagged 'java'"><span>java</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_7"><a  href="http://forum.codecall.net/tags/blog/html/" data-tooltip="Find more content tagged 'html'"><span>html</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_7"><a  href="http://forum.codecall.net/tags/forums/ajax/" data-tooltip="Find more content tagged 'ajax'"><span>ajax</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/form/" data-tooltip="Find more content tagged 'form'"><span>form</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/jquery/" data-tooltip="Find more content tagged 'jquery'"><span>jquery</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/blog/C%23/" data-tooltip="Find more content tagged 'C#'"><span>C#</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/blog/assembly/" data-tooltip="Find more content tagged 'assembly'"><span>assembly</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/linked%2Blist/" data-tooltip="Find more content tagged 'linked list'"><span>linked list</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/blog/php/" data-tooltip="Find more content tagged 'php'"><span>php</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/blog/vb.net/" data-tooltip="Find more content tagged 'vb.net'"><span>vb.net</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/xml/" data-tooltip="Find more content tagged 'xml'"><span>xml</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/blog/android/" data-tooltip="Find more content tagged 'android'"><span>android</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/login/" data-tooltip="Find more content tagged 'login'"><span>login</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/css/" data-tooltip="Find more content tagged 'css'"><span>css</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/encryption/" data-tooltip="Find more content tagged 'encryption'"><span>encryption</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/setup/" data-tooltip="Find more content tagged 'setup'"><span>setup</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/calculator/" data-tooltip="Find more content tagged 'calculator'"><span>calculator</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/combobox/" data-tooltip="Find more content tagged 'combobox'"><span>combobox</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/binary/" data-tooltip="Find more content tagged 'binary'"><span>binary</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/pseudocode/" data-tooltip="Find more content tagged 'pseudocode'"><span>pseudocode</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/hello%2Bworld/" data-tooltip="Find more content tagged 'hello world'"><span>hello world</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/innerHTML/" data-tooltip="Find more content tagged 'innerHTML'"><span>innerHTML</span></a></span></li>
+		
+
+			<li><span class="ipsTagWeight_8"><a  href="http://forum.codecall.net/tags/forums/grid/" data-tooltip="Find more content tagged 'grid'"><span>grid</span></a></span></li>
+		
+		</ul>
+	</div>
+</div></div>
+<a href='#' id='toggle_sidebar' style='display:none;'></a>
+	</div>
+	</div>
+	<div class='ipsLayout_content'>
+		
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+	ipb.topic.inSection    = 'topicview';
+	ipb.topic.topic_id     = 51524;
+	ipb.topic.forum_id     = 161;
+	ipb.topic.redirectPost = 1;
+	ipb.topic.start_id     = 0;
+	ipb.topic.page_id      = 0;
+	ipb.topic.topPid       = 0;
+	ipb.topic.counts       = { postTotal: 40,
+							  curStart:  ipb.topic.start_id,
+							  perPage:   12 };
+	//Search Setup
+	ipb.vars['search_type']			= 'forum';
+	ipb.vars['search_type_id']		= 161;
+	ipb.vars['search_type_2']		= 'topic';
+	ipb.vars['search_type_id_2']	= 51524;
+	
+	
+	// Delete stuff set up
+	ipb.topic.deleteUrls['hardDelete'] = new Template( ipb.vars['base_url'] + "app=forums&module=moderate&section=moderate&do=04&f=161&t=51524&page=&auth_key=880ea6a14ea49e853634fbdc5015a024&p=#{pid}" );
+	ipb.topic.deleteUrls['softDelete'] = new Template( ipb.vars['base_url'] + "app=forums&module=moderate&section=moderate&do=postchoice&tact=sdelete&t=51524&f=161&auth_key=880ea6a14ea49e853634fbdc5015a024&selectedpids[#{pid}]=#{pid}&pid=#{pid}" );
+	
+	
+	ipb.topic.modPerms	  = [];
+	
+	
+	ipb.templates['post_moderation'] = new Template("<div id='comment_moderate_box' class='ipsFloatingAction' style='display: none'><span class='desc'>With <span id='comment_count'>#{count}</span> checked posts: </span><select id='tactInPopup' class='input_select'><option value='approve'>Approve</option><option value='delete'>Hide</option><option value='sundelete'>Unhide</option><option value='deletedo'>Delete</option><option value='merge'>Merge</option><option value='split'>Split</option><option value='move'>Move</option></select>&nbsp;&nbsp;<input type='button' class='input_submit' id='submitModAction' value='Go' /></div>");
+	
+//]]>
+</script>
+
+
+
+
+
+	<a href='http://forum.codecall.net/user/24233-guest/' class='ipsUserPhotoLink left'>
+
+<img src='http://www.gravatar.com/avatar/cc1926658b0e6405a566a0dbc561de1f?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' alt='Photo' class='ipsUserPhoto ipsUserPhoto_medium' />
+
+	</a>
+
+<div itemscope itemtype="http://schema.org/Article" class='ipsBox_withphoto'>
+	<span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" class='rating ipsType_smaller'>
+			
+			
+				<img src='http://img.codecall.net/public/style_images/master/star_off.png' alt='-' class='rate_img' />
+			
+			
+			
+				<img src='http://img.codecall.net/public/style_images/master/star_off.png' alt='-' class='rate_img' />
+			
+			
+			
+				<img src='http://img.codecall.net/public/style_images/master/star_off.png' alt='-' class='rate_img' />
+			
+			
+			
+				<img src='http://img.codecall.net/public/style_images/master/star_off.png' alt='-' class='rate_img' />
+			
+			
+			
+				<img src='http://img.codecall.net/public/style_images/master/star_off.png' alt='-' class='rate_img' />
+			
+			
+			<span id='rating_text'>
+				
+			</span>
+			
+		</span>
+	<h1 itemprop="name" class='ipsType_pagetitle'>Reading And Writing Files In C</h1>
+	<div class='desc lighter blend_links'>
+		 Started by <span itemprop="creator"><a hovercard-ref="member" hovercard-id="24233" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/24233-guest/' title='View Profile'><span itemprop="name">Guest</span></a></span>, <span itemprop="dateCreated" datetime="2009-11-03">Nov 03 2009 07:57 PM</span>
+	</div>
+	
+		<a class='ipsTag' href="http://forum.codecall.net/tags/forums/hello%2Bworld/" data-tooltip="Find more content tagged 'hello world'"><span>hello world</span></a> <a class='ipsTag' href="http://forum.codecall.net/tags/forums/read/" data-tooltip="Find more content tagged 'read'"><span>read</span></a> <a class='ipsTag' href="http://forum.codecall.net/tags/forums/write/" data-tooltip="Find more content tagged 'write'"><span>write</span></a> <a class='ipsTag' href="http://forum.codecall.net/tags/forums/file/" data-tooltip="Find more content tagged 'file'"><span>file</span></a>
+		<br />
+	
+	<meta itemprop="interactionCount" content="UserComments:40" />
+</div>
+
+
+
+<br />
+<div class='topic_controls'>
+	<div class='pagination clearfix left '>
+		<ul class='ipsList_inline back left'>
+			
+			
+		</ul>
+		<ul class='ipsList_inline left pages'>
+			<li class='pagejump clickable pj0008419001'>
+					<a href='#'>Page 1 of 4 <!--<img src='http://img.codecall.net/public/style_images/master/dropdown.png' alt='+' />--></a>
+					<script type='text/javascript'>
+						ipb.global.registerPageJump( '0008419001', { url: "http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/", stKey: 'st', perPage: 12, totalPages: 4, anchor: '' } );
+					</script>
+				</li>
+			
+				
+					
+						<li class='page active'>1</li>
+					
+				
+
+					<li class='page'>
+							<a href="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/page-2" title="Reading And Writing Files In C - Page 2">2</a>
+						</li>
+				
+
+					<li class='page'>
+							<a href="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/page-3" title="Reading And Writing Files In C - Page 3">3</a>
+						</li>
+				
+			
+		</ul>
+		<ul class='ipsList_inline forward left'>
+			<li class='next'><a href="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/page-2" title="Reading And Writing Files In C - Next page" rel='next'>Next</a></li>
+			<li class='last'><a href="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/page-4" title="Reading And Writing Files In C - Go to last page" rel='last'>&raquo;</a></li>
+		</ul>
+	</div>
+	
+
+
+	<ul class='topic_buttons'>
+			<li class='disabled'><span>Please log in to reply</span></li>
+			
+			
+		</ul>
+</div>
+
+<div class='maintitle clear clearfix'>
+	<span class='ipsType_small'>
+		39 replies to this topic
+	</span>
+		
+</div>
+
+<div class='topic hfeed clear clearfix'>
+	
+	
+
+	<div class='ipsBox'>
+		<div class='ipsBox_container' id='ips_Posts'>
+			
+				<!--post:521520-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_521520'>
+		<a id='entry521520'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='521520' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry521520' rel='bookmark' title='Reading And Writing Files In C: post #1'>
+					
+					#1
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #1' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="24233" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/24233-guest/' title='View Profile'><span itemprop="name">Guest</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">Guest</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>CC Devotee</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/24233-guest/" title="View Profile: Guest" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://www.gravatar.com/avatar/cc1926658b0e6405a566a0dbc561de1f?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			<span style='color:#0b5794;font-weight: bold;'>Expert Member</span>
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			911 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+						<li>
+							<span class="ft">Location:</span><span class="fc">USA</span>
+						</li>
+					
+				
+
+					
+						<li>
+							<span class="ft">Programming Language:</span><span class="fc">C, Java, Python, Bash, Others</span>
+						</li>
+					
+				
+
+					
+						<li>
+							<span class="ft">Learning:</span><span class="fc">Assembly, Scheme</span>
+						</li>
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2009-11-04T03:57:44+00:00">03 November 2009 - 07:57 PM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<div id="sos33adspost" style="float:right;"/><script type="text/javascript"><!--
+google_ad_client = "ca-pub-6325217157040947";
+/* codecall */
+google_ad_slot = "4015969946";
+google_ad_width = 125;
+google_ad_height = 125;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div><!--cached-Wed, 08 May 2013 03:03:30 +0000--><p>This tutorial will show you how to read and write files in C.<br>All file functions need &lt;<strong>stdio.h</strong>&gt; to work properly.<br><br>The first thing you need to know about is file pointers. File pointers are like <a href='http://forum.codecall.net/topic/52150-pointers-what-how-and-why/' class='bbc_url' title=''>any other pointer</a>, but they point to a file. (Kind of obvious). You define a file pointer as follows:</p><p><br></p><pre class="prettyprint linenums:0">FILE *filepointer;</pre><br>In order to make the file pointer point to a file you use the <strong>fopen</strong> function. The function works as follows:<br><pre class="prettyprint linenums:0linenums:0">filepointer=fopen("filename", "mode");</pre><p><br><a href='http://forum.codecall.net/tags/forums/fopen/' class='bbc_url' title=''>fopen</a> returns a file pointer. It returns NULL if the file does not exist.<br>fopen takes the first argument as the filename to open. It needs to be a string.<br>The second argument is the mode argument<br>Mode specifies what you want to do with the file.<br>Some modes are:</p><ul class="bbc"><li>"r" - read the file</li><li>"w" - write the file</li><li>"a" - append to the file</li><li>"r+" - read and write to the file</li><li>"w+" - read and write, overwrite the file</li><li>"a+" - read and write, append</li></ul><p>These modes will open files in text mode. Files opened in text mode have some bytes filtered out. If you want to open binary files use binary mode by adding a "b" to the mode. For example:</p><ul class="bbc"><li>"rb" - read the file in binary mode</li></ul><p><a href='http://forum.codecall.net/topic/51010-dynamic-arrays-using-malloc-and-realloc/' class='bbc_url' title=''><span>Dynamic Arrays: Using malloc() and realloc()</span></a></p><p>&nbsp;</p><p>There are three input and output streams that are automatically open whenever your program starts. These are <strong>stdin</strong>, <strong>stdout</strong> and <strong>stderr</strong>.<br>These file pointers work as follows:</p><ul class="bbc"><li><strong>stdin</strong>: opened in read ("r") mode, this file pointer reads from <strong>standard input</strong>. Any input that you provide on the command line is read by stdin.</li><li><strong>stdout</strong>: opened in write ("w") mode, this file pointer writes to the <strong>standard output</strong>. Anything written to this stream is printed on the command line.</li><li><strong>stderr</strong>: opened in write ("w") mode, this file pointer writes to the <strong>standard error</strong>. This is generally meant for error messages that are produced by your program. Whatever is written to this stream is usually printed on the command line like stdout. In most operating systems, there are ways to tell whether output was sent to stdout or stderr.</li></ul><br><p>To read a character from a file, you use <strong>fgetc</strong>. It is like getchar, but for any file, not just stdin.<br>It works like this:<br></p><pre class="prettyprint linenums:0linenums:0linenums:0">character=fgetc(filepointer);</pre><br>fgetc returns the character that is read from the file as an integer.<br>fgetc takes the file pointer as its only input.<br>It will automatically increment the pointer to read the next character.<br><br><strong>fputc</strong> allows you to write a character to a file:<br><pre class="prettyprint linenums:0linenums:0linenums:0linenums:0">fputc(character, filepointer);</pre><br>fputc takes an unsigned char as the first argument and the file pointer as the second argument.<br>fputc returns <strong>EOF</strong> when it reaches the <strong>end of file</strong>. <strong>EOF</strong> is a constant defined in &lt;stdio.h&gt;<p>&nbsp;</p><p><a href='http://forum.codecall.net/topic/40379-difference-between-c-and-c/' class='bbc_url' title=''><span>Difference between c and c++</span></a></p><p><br>You can also use <strong>fprintf</strong> and <strong>fscanf</strong>. They work like printf and scanf, except the file pointer is the first argument. They work like this:</p><p>&nbsp;</p><p></p><pre class="prettyprint linenums:0linenums:0linenums:0linenums:0linenums:0">fprintf(filepointer, "Hello, World!\n"); //write hello world to the file
+fscanf(filepointer, "%d", integer); //read an integer from the file</pre><br>In order to close the file again, you must use <strong>fclose</strong>. It looks like this:<br><pre class="prettyprint linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0">fclose(filepointer);</pre><br>fclose closes the file that filepointer points to.<br><br>For example, if you want to print the contents of data.txt the code could look something like this:<br><pre class="prettyprint linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0">#include &lt;stdio.h&gt;
+
+int main()
+{
+FILE *filepointer;
+int character;
+filepointer=fopen("data.txt", "r"); /* filepointer points to data.txt */
+if (filepointer==NULL) { /* error opening file returns NULL */
+printf("Could not open data.txt!\n"); /* error message */
+return 1; /* exit with failure */
+}
+/* while character is not end of file */
+while ((character=fgetc(filepointer)) != EOF) {
+putchar(character); /* print the character */
+}
+fclose(filepointer); /* close the file */
+return 0; /* success */
+}</pre><p>&nbsp;</p><p><a href='http://forum.codecall.net/topic/50480-getter-and-setter-methods/' class='bbc_url' title=''><span>Getter and Setter Methods</span></a></p><p><br>There are also <strong>fputs</strong> and <strong>fgets</strong>. <strong>fputs</strong> is simple, similar to <strong>puts</strong>. Unlike <strong>puts</strong>, it does not automatically append a newline to supplied string. It writes a line to a file like so:<br></p><pre class="prettyprint linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0">fputs("string\n", filepointer);</pre><br><strong>fgets</strong> is a special function in C. It is regarded as the best function in standard C to reliably accept input. Functions like <strong>scanf</strong> have <strong>undefined behavior</strong> when given erroneous input. Programs that use <strong>scanf</strong> or <strong>gets</strong> can have buffer overflows and be susceptible to exploits! <strong>scanf</strong> can be nice for those just starting to learn C, but it should never be used in real-world code.<br>fgets usage looks like this:<br><pre class="prettyprint linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0">char input&#91;100&#93;;
+fgets(input, sizeof(input), filepointer);</pre><br>The middle argument is the beauty of fgets. It is the limit of characters that fgets will store in the char array. Usually sizeof(firstargument) is a good idea, unless you are allocating memory with malloc or a similar function.<br>fgets reads as much as it can. If the input goes over the limit, it will stop. The next file-reading function will continue where fgets left off. (Many times, fgets again, in a loop)<br>fgets does not discriminate. It reads spaces and newlines with the rest of the input.<br>fgets returns <strong>NULL</strong> when nothing can be read. (end of file)<br>Here's an example very similar to the one above, but instead of fgetc, it uses fgets and fputs:<br><pre class="prettyprint linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0linenums:0">#include &lt;stdio.h&gt;
+
+int main()
+{
+FILE *filepointer;
+char string&#91;100&#93;;
+filepointer=fopen("data.txt", "r"); /* filepointer points to data.txt */
+if (filepointer==NULL) { /* error opening file returns NULL */
+printf("Could not open data.txt!\n"); /* error message */
+return 1; /* exit with failure */
+}
+/* while we're not at end of file */
+while (fgets(string, sizeof(string), filepointer) != NULL) {
+fputs(string); /* print the string */
+}
+fclose(filepointer); /* close the file */
+return 0; /* success */
+}</pre><br><br>That's it! If you have questions, comments or suggestions feel free to post! +rep is very appreciated.<p>&nbsp;</p><p><strong>Looking for more beginner tutorials in C?</strong></p><p><a href='http://forum.codecall.net/topic/63924-a-simple-tcp-server-using-linux-c-api/' class='bbc_url' title=''><span>A simple TCP server using Linux C API</span></a></p><p><a href='http://forum.codecall.net/topic/45101-basic-c-for-beginners/' class='bbc_url' title=''><span>Basic C, for beginners!</span></a></p><p><a href='http://forum.codecall.net/topic/45079-switch-and-cases-in-c/' class='bbc_url' title=''><span>Switch and cases in C</span></a></p>
+					
+					<br />
+					<p class='edit'>
+							<strong>Edited by Roger, 26 February 2013 - 03:57 PM.</strong>
+							
+						</p>
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_521520'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_521520', { domLikeStripId: 'like_post_521520', app: 'forums', type: 'pid', typeid: '521520' }, parseInt('6') );
+</script>
+				
+								
+				
+					<div class="signature" data-memberid="24233">
+	
+	<!--signature-cached-Sat, 30 Mar 2013 22:06:28 +0000-->Root Beer == System Administrator's Beer<br />
+Download the new operating system programming kit! (some assembly required)
+</div>
+				
+				
+				
+			
+				<ul id='postControlsNormal_521520' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+			<div align='center' class='nexusad'><!-- START 728x90 AdPeeps.com Code -->
+<p align="center">
+<iframe src="http://ads.codecall.net/ads/adpeeps.php?bfunction=showad&uid=100000&bmode=off&bzone=global_top_leaderboard&bsize=728x90&btype=4&bpos=default&ver=2.0&brefresh=80&btarget=_blank" frameborder="0" width="728" height="90" scrolling="no" marginheight="0" marginwidth="0">
+<ilayer src="http://ads.codecall.net/ads/adpeeps.php?bfunction=showad&uid=100000&bmode=off&bzone=global_top_leaderboard&bsize=728x90&btype=4&bpos=default&ver=2.0&brefresh=80&btarget=_blank" frameborder="0" width="728" height="90"></ilayer>
+</iframe>
+</p>
+<!-- END AdPeeps.com Code --></div>
+		
+<script type="text/javascript">
+var pid = parseInt(521520);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_521520') )
+	{
+		$('multiq_521520').show();
+	}
+	
+	if( $('toggle_post_521520') )
+	{
+		$('toggle_post_521520').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[521520] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:521523-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_521523'>
+		<a id='entry521523'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='521523' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry521523' rel='bookmark' title='Reading And Writing Files In C: post #2'>
+					
+					#2
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #2' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="17224" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/17224-john/' title='View Profile'><span itemprop="name">John</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">John</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>CC Mentor</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/17224-john/" title="View Profile: John" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://www.gravatar.com/avatar/8366fd78e4ddd8b793b23075120dd985?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			<span style='color:#962d29;font-weight: bold;'>Moderator</span>
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://forum.codecall.net/public/style_extra/team_icons/staff.png' alt='' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			4,449 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+						<li>
+							<span class="ft">Location:</span><span class="fc">New York, NY</span>
+						</li>
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2009-11-04T04:55:01+00:00">03 November 2009 - 08:55 PM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:30 +0000-->Nice tutorial. One thing I never fully took the time to understand is the other modes. Technically, aren't there 12 modes? r, w, a, r+, w+, a+ and then all those in binary mode? I never understood the difference between x, x+, and xb - could you elaborate on those?
+					
+					<br />
+					
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_521523'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_521523', { domLikeStripId: 'like_post_521523', app: 'forums', type: 'pid', typeid: '521523' }, parseInt('0') );
+</script>
+				
+								
+				
+					<div class="signature" data-memberid="17224">
+	
+	<!--signature-cached-Thu, 02 May 2013 14:23:26 +0000--><strong class='bbc'><a href='http://www.johnciacia.com' class='bbc_url' title='External link' rel='nofollow external'><span  style='color: #000080'>Compiled Thoughts</span></a></strong>
+</div>
+				
+				
+				
+			
+				<ul id='postControlsNormal_521523' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(521523);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_521523') )
+	{
+		$('multiq_521523').show();
+	}
+	
+	if( $('toggle_post_521523') )
+	{
+		$('toggle_post_521523').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[521523] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:521583-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_521583'>
+		<a id='entry521583'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='guest row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='521583' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry521583' rel='bookmark' title='Reading And Writing Files In C: post #3'>
+					
+					#3
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #3' />
+					</a>
+				</span>
+				
+				
+					
+	Guest_Jordan_*
+
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">Guest_Jordan_*</span>
+	<ul class='basic_info'>
+		
+		
+			<li class='avatar'>
+				<img itemprop="image" src='http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_large' />
+			</li>
+		
+		<li class='group_title'>
+			Guest
+		</li>
+		
+		
+		
+	</ul>
+	
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2009-11-04T13:12:36+00:00">04 November 2009 - 05:12 AM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:30 +0000-->Nicely done, I've already referred a new member to this tutorial. <img src='http://img.codecall.net/public/style_emoticons/default/smile.png' class='bbc_emoticon' alt=':)' /><br />
++rep
+					
+					<br />
+					
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_521583'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_521583', { domLikeStripId: 'like_post_521583', app: 'forums', type: 'pid', typeid: '521583' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id='postControlsNormal_521583' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(521583);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_521583') )
+	{
+		$('multiq_521583').show();
+	}
+	
+	if( $('toggle_post_521583') )
+	{
+		$('toggle_post_521583').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[521583] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:521644-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_521644'>
+		<a id='entry521644'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='521644' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry521644' rel='bookmark' title='Reading And Writing Files In C: post #4'>
+					
+					#4
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #4' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="17218" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/17218-wingedpanther/' title='View Profile'><span itemprop="name">WingedPanther</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">WingedPanther</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>A spammer&#39;s worst nightmare</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/17218-wingedpanther/" title="View Profile: WingedPanther" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://uploads.codecall.net/profile/photo-thumb-17218.gif?_r=0' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			<span style='color:#962d29;font-weight: bold;'>Moderator</span>
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://forum.codecall.net/public/style_extra/team_icons/staff.png' alt='' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			15,771 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+						<li>
+							<span class="ft">Location:</span><span class="fc">Upstate, South Carolina</span>
+						</li>
+					
+				
+
+					
+						<li>
+							<span class="ft">Programming Language:</span><span class="fc">C, C++, PL/SQL, Delphi/Object Pascal, Pascal, Transact-SQL, Others</span>
+						</li>
+					
+				
+
+					
+						<li>
+							<span class="ft">Learning:</span><span class="fc">Java, C#, PHP, JavaScript, Lisp, Fortran, Haskell, Others</span>
+						</li>
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2009-11-04T16:40:19+00:00">04 November 2009 - 08:40 AM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:30 +0000-->short and sweet.  +rep
+					
+					<br />
+					
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_521644'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_521644', { domLikeStripId: 'like_post_521644', app: 'forums', type: 'pid', typeid: '521644' }, parseInt('0') );
+</script>
+				
+								
+				
+					<div class="signature" data-memberid="17218">
+	
+	<!--signature-cached-Thu, 09 May 2013 19:08:47 +0000-->Programming is a branch of mathematics.<br /><a href='http://forum.codecall.net/blog/894-wps-tech-blog/' class='bbc_url' title=''>My CodeCall Blog</a> | <a href='http://wingedpanther.wordpress.com/' class='bbc_url' title='External link' rel='nofollow external'>My Personal Blog</a>
+</div>
+				
+				
+				
+			
+				<ul id='postControlsNormal_521644' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(521644);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_521644') )
+	{
+		$('multiq_521644').show();
+	}
+	
+	if( $('toggle_post_521644') )
+	{
+		$('toggle_post_521644').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[521644] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:521676-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_521676'>
+		<a id='entry521676'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='521676' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry521676' rel='bookmark' title='Reading And Writing Files In C: post #5'>
+					
+					#5
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #5' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="24181" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/24181-so1i/' title='View Profile'><span itemprop="name">so1i</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">so1i</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>CC Addict</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/24181-so1i/" title="View Profile: so1i" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://uploads.codecall.net/profile/photo-thumb-24181.png?_r=1356552315' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			<span style='color:#028482;font-weight: bold;'>Advanced Member</span>
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			297 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2009-11-04T18:48:08+00:00">04 November 2009 - 10:48 AM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:31 +0000-->This is good, well structured. +rep
+					
+					<br />
+					
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_521676'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_521676', { domLikeStripId: 'like_post_521676', app: 'forums', type: 'pid', typeid: '521676' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id='postControlsNormal_521676' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(521676);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_521676') )
+	{
+		$('multiq_521676').show();
+	}
+	
+	if( $('toggle_post_521676') )
+	{
+		$('toggle_post_521676').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[521676] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:521764-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_521764'>
+		<a id='entry521764'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='521764' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry521764' rel='bookmark' title='Reading And Writing Files In C: post #6'>
+					
+					#6
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #6' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="24233" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/24233-guest/' title='View Profile'><span itemprop="name">Guest</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">Guest</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>CC Devotee</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/24233-guest/" title="View Profile: Guest" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://www.gravatar.com/avatar/cc1926658b0e6405a566a0dbc561de1f?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			<span style='color:#0b5794;font-weight: bold;'>Expert Member</span>
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			911 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+						<li>
+							<span class="ft">Location:</span><span class="fc">USA</span>
+						</li>
+					
+				
+
+					
+						<li>
+							<span class="ft">Programming Language:</span><span class="fc">C, Java, Python, Bash, Others</span>
+						</li>
+					
+				
+
+					
+						<li>
+							<span class="ft">Learning:</span><span class="fc">Assembly, Scheme</span>
+						</li>
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2009-11-05T02:19:08+00:00">04 November 2009 - 06:19 PM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:31 +0000--><blockquote class='ipsBlockquote' data-author="John"><p>Nice tutorial. One thing I never fully took the time to understand is the other modes. Technically, aren't there 12 modes? r, w, a, r+, w+, a+ and then all those in binary mode? I never understood the difference between x, x+, and xb - could you elaborate on those?</p></blockquote><br />I have added the x+ file modes to the list, but I am not really sure what binary mode does. I will look into it.<br />Edit: I have researched it and added binary mode to the tutorial.
+					
+					<br />
+					<p class='edit'>
+							<strong>Edited by Guest, 04 November 2009 - 07:47 PM.</strong>
+							
+						</p>
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_521764'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_521764', { domLikeStripId: 'like_post_521764', app: 'forums', type: 'pid', typeid: '521764' }, parseInt('0') );
+</script>
+				
+								
+				
+					<div class="signature" data-memberid="24233">
+	
+	<!--signature-cached-Sat, 30 Mar 2013 22:06:28 +0000-->Root Beer == System Administrator's Beer<br />
+Download the new operating system programming kit! (some assembly required)
+</div>
+				
+				
+				
+			
+				<ul id='postControlsNormal_521764' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(521764);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_521764') )
+	{
+		$('multiq_521764').show();
+	}
+	
+	if( $('toggle_post_521764') )
+	{
+		$('toggle_post_521764').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[521764] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:523623-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_523623'>
+		<a id='entry523623'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='523623' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry523623' rel='bookmark' title='Reading And Writing Files In C: post #7'>
+					
+					#7
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #7' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="20232" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/20232-marwex89/' title='View Profile'><span itemprop="name">marwex89</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">marwex89</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>CC Mentor</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/20232-marwex89/" title="View Profile: marwex89" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://uploads.codecall.net/profile/photo-thumb-20232.gif?_r=0' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			<span style='color:#0b5794;font-weight: bold;'>VIP Member</span>
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			2,857 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2009-11-08T18:20:28+00:00">08 November 2009 - 10:20 AM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:31 +0000-->+rep for the tut, you beggar <img src='http://img.codecall.net/public/style_emoticons/default/tongue.png' class='bbc_emoticon' alt=':P' />
+					
+					<br />
+					
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_523623'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_523623', { domLikeStripId: 'like_post_523623', app: 'forums', type: 'pid', typeid: '523623' }, parseInt('0') );
+</script>
+				
+								
+				
+					<div class="signature" data-memberid="20232">
+	
+	<!--signature-cached-Fri, 29 Mar 2013 03:52:28 +0000--><strong class='bbc'>Hey! Check out my new Toyota keyboaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</strong>
+</div>
+				
+				
+				
+			
+				<ul id='postControlsNormal_523623' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(523623);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_523623') )
+	{
+		$('multiq_523623').show();
+	}
+	
+	if( $('toggle_post_523623') )
+	{
+		$('toggle_post_523623').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[523623] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:523663-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_523663'>
+		<a id='entry523663'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='523663' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry523663' rel='bookmark' title='Reading And Writing Files In C: post #8'>
+					
+					#8
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #8' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="24060" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/24060-debtboy/' title='View Profile'><span itemprop="name">debtboy</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">debtboy</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>CC Devotee</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/24060-debtboy/" title="View Profile: debtboy" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://uploads.codecall.net/profile/photo-thumb-24060.gif?_r=0' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			Just Joined
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			499 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2009-11-08T20:08:12+00:00">08 November 2009 - 12:08 PM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:31 +0000-->Great tutorial +rep
+					
+					<br />
+					<p class='edit'>
+							<strong>Edited by debtboy, 10 November 2009 - 02:14 PM.</strong>
+							
+						</p>
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_523663'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_523663', { domLikeStripId: 'like_post_523663', app: 'forums', type: 'pid', typeid: '523663' }, parseInt('0') );
+</script>
+				
+								
+				
+					<div class="signature" data-memberid="24060">
+	
+	<!--signature-cached-Mon, 22 Apr 2013 23:04:33 +0000--><strong class='bbc'><span  style='font-size: 12px'><a href='http://unixclubhouse.com/' class='bbc_url' title='External link' rel='nofollow external'>http://unixclubhouse.com</a></span></strong>
+</div>
+				
+				
+				
+			
+				<ul id='postControlsNormal_523663' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(523663);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_523663') )
+	{
+		$('multiq_523663').show();
+	}
+	
+	if( $('toggle_post_523663') )
+	{
+		$('toggle_post_523663').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[523663] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:523701-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_523701'>
+		<a id='entry523701'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='523701' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry523701' rel='bookmark' title='Reading And Writing Files In C: post #9'>
+					
+					#9
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #9' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="24233" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/24233-guest/' title='View Profile'><span itemprop="name">Guest</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">Guest</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>CC Devotee</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/24233-guest/" title="View Profile: Guest" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://www.gravatar.com/avatar/cc1926658b0e6405a566a0dbc561de1f?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			<span style='color:#0b5794;font-weight: bold;'>Expert Member</span>
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			911 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+						<li>
+							<span class="ft">Location:</span><span class="fc">USA</span>
+						</li>
+					
+				
+
+					
+						<li>
+							<span class="ft">Programming Language:</span><span class="fc">C, Java, Python, Bash, Others</span>
+						</li>
+					
+				
+
+					
+						<li>
+							<span class="ft">Learning:</span><span class="fc">Assembly, Scheme</span>
+						</li>
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2009-11-08T22:38:46+00:00">08 November 2009 - 02:38 PM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:31 +0000-->Thanks everyone <img src='http://img.codecall.net/public/style_emoticons/default/mustache.gif' class='bbc_emoticon' alt=':D' />
+					
+					<br />
+					
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_523701'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_523701', { domLikeStripId: 'like_post_523701', app: 'forums', type: 'pid', typeid: '523701' }, parseInt('0') );
+</script>
+				
+								
+				
+					<div class="signature" data-memberid="24233">
+	
+	<!--signature-cached-Sat, 30 Mar 2013 22:06:28 +0000-->Root Beer == System Administrator's Beer<br />
+Download the new operating system programming kit! (some assembly required)
+</div>
+				
+				
+				
+			
+				<ul id='postControlsNormal_523701' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(523701);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_523701') )
+	{
+		$('multiq_523701').show();
+	}
+	
+	if( $('toggle_post_523701') )
+	{
+		$('toggle_post_523701').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[523701] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:526856-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_526856'>
+		<a id='entry526856'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='526856' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry526856' rel='bookmark' title='Reading And Writing Files In C: post #10'>
+					
+					#10
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #10' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="24750" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/24750-tonymorrison39/' title='View Profile'><span itemprop="name">tonymorrison39</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">tonymorrison39</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>CC Newcomer</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/24750-tonymorrison39/" title="View Profile: tonymorrison39" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://www.gravatar.com/avatar/ac3ad6cdb35f17bf9f00c0ccf2e23dca?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			Just Joined
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			20 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2009-11-21T16:46:13+00:00">21 November 2009 - 08:46 AM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:31 +0000-->very nice i learned something
+					
+					<br />
+					
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_526856'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_526856', { domLikeStripId: 'like_post_526856', app: 'forums', type: 'pid', typeid: '526856' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id='postControlsNormal_526856' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(526856);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_526856') )
+	{
+		$('multiq_526856').show();
+	}
+	
+	if( $('toggle_post_526856') )
+	{
+		$('toggle_post_526856').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[526856] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:536004-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_536004'>
+		<a id='entry536004'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='536004' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry536004' rel='bookmark' title='Reading And Writing Files In C: post #11'>
+					
+					#11
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #11' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="25224" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/25224-arkanion/' title='View Profile'><span itemprop="name">arkanion</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">arkanion</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>CC Newcomer</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/25224-arkanion/" title="View Profile: arkanion" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://www.gravatar.com/avatar/b55dcf0f8c34ac399576ccfb40f9593f?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			Just Joined
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			10 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2010-01-13T20:00:15+00:00">13 January 2010 - 12:00 PM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:31 +0000-->nice issue
+					
+					<br />
+					
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_536004'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_536004', { domLikeStripId: 'like_post_536004', app: 'forums', type: 'pid', typeid: '536004' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id='postControlsNormal_536004' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(536004);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_536004') )
+	{
+		$('multiq_536004').show();
+	}
+	
+	if( $('toggle_post_536004') )
+	{
+		$('toggle_post_536004').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[536004] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:536031-->
+
+<div class='post_block hentry clear clearfix  ' id='post_id_536031'>
+		<a id='entry536031'></a>
+		
+	
+		
+		<div class='post_wrap' >
+			
+				<h3 class='row2'>
+			
+				<span class='post_id right ipsType_small desc blend_links'>
+					
+						<a itemprop="replyToUrl" data-entry-pid='536031' href='http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/#entry536031' rel='bookmark' title='Reading And Writing Files In C: post #12'>
+					
+					#12
+					<img src='http://img.codecall.net/public/style_images/master/icon_share.png' class='small' title='Reading And Writing Files In C: post #12' />
+					</a>
+				</span>
+				
+				
+					<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="25227" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/25227-phineas/' title='View Profile'><span itemprop="name">Phineas</span></a></span>
+				
+			
+				
+			</h3>
+			<div class='author_info'>
+				<div itemscope itemtype="http://schema.org/Person" class='user_details'>
+	<span class='hide' itemprop="name">Phineas</span>
+	<ul class='basic_info'>
+		
+			<p class='desc member_title'>CC Newcomer</p>
+		
+		<li class='avatar'>
+				
+				<a itemprop="url" href="http://forum.codecall.net/user/25227-phineas/" title="View Profile: Phineas" class='ipsUserPhotoLink'>
+				
+				
+					<img itemprop="image" src='http://www.gravatar.com/avatar/3cee2a74be5127562caef6d1d061db56?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_large' />
+				
+				
+				</a>
+				
+			</li>
+		<li class='group_title'>
+			Just Joined
+		</li>
+		<li class='group_icon'>
+			
+				<img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' /><img src='http://img.codecall.net/public/style_images/master/bullet_black.png' alt='Pip' />
+			
+			</li>
+		
+		<li class='post_count desc lighter'>
+			11 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class='custom_fields'>
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+	
+</div>
+			</div>
+			<div class='post_body'>
+				<p class='posted_info desc lighter ipsType_small'>
+					Posted <abbr class="published" itemprop="commentTime" title="2010-01-13T23:27:08+00:00">13 January 2010 - 03:27 PM</abbr>
+					
+				</p>
+				
+				<div itemprop="commentText" class='post entry-content '>
+					<!--cached-Wed, 08 May 2013 03:03:31 +0000-->Nice TuT.
+					
+					<br />
+					
+				</div>
+				
+				
+				<div class='ipsLikeBar right clearfix' id='rep_post_536031'>
+				<ul class='ipsList_inline'>
+					
+					
+				</ul>
+			</div>
+<script type='text/javascript'>
+	ipb.global.registerReputation( 'rep_post_536031', { domLikeStripId: 'like_post_536031', app: 'forums', type: 'pid', typeid: '536031' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id='postControlsNormal_536031' class='post_controls clear clearfix' >
+					<li class='top hide'><a href='#ipboard_body' class='top' title='Back to top'>Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+					
+			</div>
+		</div>
+	</div>
+		
+		
+		<hr />
+		
+		
+<script type="text/javascript">
+var pid = parseInt(536031);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_536031') )
+	{
+		$('multiq_536031').show();
+	}
+	
+	if( $('toggle_post_536031') )
+	{
+		$('toggle_post_536031').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[536031] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+		</div>
+	</div>
+
+<hr />
+<div class='topic_controls clear ipsPad_top_bottom_half'>
+	
+		<div class='left'><div class='pagination clearfix left '>
+		<ul class='ipsList_inline back left'>
+			
+			
+		</ul>
+		<ul class='ipsList_inline left pages'>
+			<li class='pagejump clickable pj0008419001'>
+					<a href='#'>Page 1 of 4 <!--<img src='http://img.codecall.net/public/style_images/master/dropdown.png' alt='+' />--></a>
+					<script type='text/javascript'>
+						ipb.global.registerPageJump( '0008419001', { url: "http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/", stKey: 'st', perPage: 12, totalPages: 4, anchor: '' } );
+					</script>
+				</li>
+			
+				
+					
+						<li class='page active'>1</li>
+					
+				
+
+					<li class='page'>
+							<a href="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/page-2" title="Reading And Writing Files In C - Page 2">2</a>
+						</li>
+				
+
+					<li class='page'>
+							<a href="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/page-3" title="Reading And Writing Files In C - Page 3">3</a>
+						</li>
+				
+			
+		</ul>
+		<ul class='ipsList_inline forward left'>
+			<li class='next'><a href="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/page-2" title="Reading And Writing Files In C - Next page" rel='next'>Next</a></li>
+			<li class='last'><a href="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/page-4" title="Reading And Writing Files In C - Go to last page" rel='last'>&raquo;</a></li>
+		</ul>
+	</div></div>
+	
+	<div class='ipsPad_top_slimmer right'>
+		
+		<a href='http://forum.codecall.net/forum/161-cc-tutorials/' class="ipsType_small desc">Back to C/C++ Tutorials</a>
+		
+	</div>	
+</div>
+<br />
+<div id='recentTopicsWrapper' class='category_block block_wrap'>
+<h3 class='maintitle'>
+Similar Topics
+</h3>
+	<div class='ipsBox table_wrap'>
+		<div class='ipsBox_container'>
+			<table class='ipb_table topic_list hover_rows'>
+				<tr class='header hide'>
+					<th scope='col' class='col_f_icon'>&nbsp;</th>
+					<th scope='col' class='col_f_topic'>Topic</th>
+					<th scope='col' class='col_f_starter short'>Started By</th>
+					<th scope='col' class='col_f_views stats'>Stats</th>
+					<th scope='col' class='col_f_post'>Last Post Info</th>
+				</tr>
+			</table>
+			<!-- BEGIN TOPICS -->
+			<ul id='recentTopics_table'>
+				
+					<li>
+	<table class="ipb_table topic_list hover_rows">
+		<tr class='__topic unread expandable' id='trow_75377' data-tid="75377" data-timestamp="1368021961">
+			<td class='col_f_icon altrow short'>
+				
+
+
+<a href='http://forum.codecall.net/topic/75377-make-file-reading-case-insensitive/?view=getnewpost' title='Go to first unread post'>
+	
+		<img src='http://img.codecall.net/public/style_images/master/t_unread.png' alt='New Replies' /><br />
+	
+	</a>
+			</td>
+
+			<td class='col_f_content '>
+				
+				<h4> <a id="tid-link-75377" href="http://forum.codecall.net/topic/75377-make-file-reading-case-insensitive/" title='- started  05 May 2013 - 09:57 AM' class='topic_title'>Make file reading case-insensitive?</a></h4>
+				<br />
+				<span class='desc lighter blend_links'>
+										Started by <a hovercard-ref="member" hovercard-id="51822" data-ipb="noparse" class="_hovertrigger url fn name  " href='http://forum.codecall.net/user/51822-dandandan/' title='View Profile'><span itemprop="name">dandandan</span></a>, 05 May 2013
+					In:
+					
+						<a href='http://forum.codecall.net/forum/122-language-forums/'>Language Forums</a>&nbsp;&rarr;
+					
+
+						<a href='http://forum.codecall.net/forum/126-java/'>Java</a>&nbsp;
+					
+					
+						&nbsp; <img src='http://img.codecall.net/public/style_images/master/icon_tag.png' /> <a  href="http://forum.codecall.net/tags/forums/case/" data-tooltip="Find more content tagged 'case'"><span>case</span></a>, <a  href="http://forum.codecall.net/tags/forums/insensitive/" data-tooltip="Find more content tagged 'insensitive'"><span>insensitive</span></a>, <a  href="http://forum.codecall.net/tags/forums/username/" data-tooltip="Find more content tagged 'username'"><span>username</span></a> <span hovercard-ref='tagsPopUp' hovercard-id='886e6ea9648a22bf6d837a780ae81e21' class='_hovertrigger clickable'>and 3 more...</span>
+					
+				</span>
+				
+			</td>
+			<td class='col_f_preview __topic_preview'>
+				
+					<a href='http://forum.codecall.net/topic/75377-make-file-reading-case-insensitive/' class='expander closed' title='Preview this topic'>&nbsp;</a>
+				
+			</td>
+			<td class='col_f_views desc blend_links'>
+				<ul>
+					<li>
+						
+						
+						
+							<a href="http://forum.codecall.net/index.php?app=forums&amp;module=extras&amp;section=stats&amp;do=who&amp;t=75377" onclick="return ipb.forums.retrieveWhoPosted( 75377 );">6 replies</a>
+					</li>
+					<li class='views desc'>181 views</li>
+				</ul>
+			</td>
+			<td class='col_f_post'>
+				<a href='http://forum.codecall.net/user/17218-wingedpanther/' class='ipsUserPhotoLink left'>
+					<img src='http://uploads.codecall.net/profile/photo-thumb-17218.gif?_r=0' class='ipsUserPhoto ipsUserPhoto_mini' />
+				</a>
+				<ul class='last_post ipsType_small'>
+									<li><a hovercard-ref="member" hovercard-id="17218" data-ipb="noparse" class="_hovertrigger url fn name  " href='http://forum.codecall.net/user/17218-wingedpanther/' title='View Profile'><span itemprop="name"><span style='color:#962d29;font-weight: bold;'>WingedPanther</span></span></a></li>
+					<li>
+						<a href='http://forum.codecall.net/topic/75377-make-file-reading-case-insensitive/?view=getlastpost' title='Go to last post'>Yesterday, 06:06 AM</a>
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</li>
+
+				
+
+					<li>
+	<table class="ipb_table topic_list hover_rows">
+		<tr class='__topic unread expandable' id='trow_75265' data-tid="75265" data-timestamp="1367499758">
+			<td class='col_f_icon altrow short'>
+				
+
+
+<a href='http://forum.codecall.net/topic/75265-access-violation-reading-location-first-chance-exception/?view=getnewpost' title='Go to first unread post'>
+	
+		<img src='http://img.codecall.net/public/style_images/master/t_unread.png' alt='New Replies' /><br />
+	
+	</a>
+			</td>
+
+			<td class='col_f_content '>
+				
+				<h4> <a id="tid-link-75265" href="http://forum.codecall.net/topic/75265-access-violation-reading-location-first-chance-exception/" title='- started  25 April 2013 - 08:48 AM' class='topic_title'>Access Violation reading location- First-chance exception.</a></h4>
+				<br />
+				<span class='desc lighter blend_links'>
+										Started by <a hovercard-ref="member" hovercard-id="32626" data-ipb="noparse" class="_hovertrigger url fn name  " href='http://forum.codecall.net/user/32626-sandmaster/' title='View Profile'><span itemprop="name"><span style='color:#028482;font-weight: bold;'>sandmaster</span></span></a>, 25 Apr 2013
+					In:
+					
+						<a href='http://forum.codecall.net/forum/122-language-forums/'>Language Forums</a>&nbsp;&rarr;
+					
+
+						<a href='http://forum.codecall.net/forum/123-c-and-c/'>C and C++</a>&nbsp;
+					
+					
+						&nbsp; <img src='http://img.codecall.net/public/style_images/master/icon_tag.png' /> <a  href="http://forum.codecall.net/tags/forums/c%2B%2B/" data-tooltip="Find more content tagged 'c++'"><span>c++</span></a>, <a  href="http://forum.codecall.net/tags/forums/projectile/" data-tooltip="Find more content tagged 'projectile'"><span>projectile</span></a>, <a  href="http://forum.codecall.net/tags/forums/error/" data-tooltip="Find more content tagged 'error'"><span>error</span></a>
+					
+				</span>
+				
+					<ul class='mini_pagination'>
+					
+							
+								<li><a href="http://forum.codecall.net/topic/75265-access-violation-reading-location-first-chance-exception/" title='- page 1'>1</a></li>
+							
+					
+
+							
+								<li><a href="http://forum.codecall.net/topic/75265-access-violation-reading-location-first-chance-exception/?st=12" title='- page 2'>2</a></li>
+							
+					
+					</ul>
+				
+			</td>
+			<td class='col_f_preview __topic_preview'>
+				
+					<a href='http://forum.codecall.net/topic/75265-access-violation-reading-location-first-chance-exception/' class='expander closed' title='Preview this topic'>&nbsp;</a>
+				
+			</td>
+			<td class='col_f_views desc blend_links'>
+				<ul>
+					<li>
+						
+						
+						
+								<span class='ipsBadge ipsBadge_orange'>Hot</span>&nbsp;
+							
+							<a href="http://forum.codecall.net/index.php?app=forums&amp;module=extras&amp;section=stats&amp;do=who&amp;t=75265" onclick="return ipb.forums.retrieveWhoPosted( 75265 );">15 replies</a>
+					</li>
+					<li class='views desc'>202 views</li>
+				</ul>
+			</td>
+			<td class='col_f_post'>
+				<a href='http://forum.codecall.net/user/35434-sepp2k/' class='ipsUserPhotoLink left'>
+					<img src='http://www.gravatar.com/avatar/7a561ec0875fcbbe3066ea8fe288ec77?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_mini' />
+				</a>
+				<ul class='last_post ipsType_small'>
+									<li><a hovercard-ref="member" hovercard-id="35434" data-ipb="noparse" class="_hovertrigger url fn name  " href='http://forum.codecall.net/user/35434-sepp2k/' title='View Profile'><span itemprop="name"><span style='color:#028482;font-weight: bold;'>sepp2k</span></span></a></li>
+					<li>
+						<a href='http://forum.codecall.net/topic/75265-access-violation-reading-location-first-chance-exception/?view=getlastpost' title='Go to last post'>02 May 2013</a>
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</li>
+
+				
+
+					<li>
+	<table class="ipb_table topic_list hover_rows">
+		<tr class='__topic unread expandable' id='trow_75320' data-tid="75320" data-timestamp="1367331129">
+			<td class='col_f_icon altrow short'>
+				
+
+
+<a href='http://forum.codecall.net/topic/75320-vbnet-reading-xml-website/?view=getnewpost' title='Go to first unread post'>
+	
+		<img src='http://img.codecall.net/public/style_images/master/t_unread.png' alt='New Replies' /><br />
+	
+	</a>
+			</td>
+
+			<td class='col_f_content '>
+				
+				<h4> <a id="tid-link-75320" href="http://forum.codecall.net/topic/75320-vbnet-reading-xml-website/" title='- started  29 April 2013 - 11:11 AM' class='topic_title'>VB.net reading XML website</a></h4>
+				<br />
+				<span class='desc lighter blend_links'>
+										Started by <a hovercard-ref="member" hovercard-id="51744" data-ipb="noparse" class="_hovertrigger url fn name  " href='http://forum.codecall.net/user/51744-ahmednoddybodiwala/' title='View Profile'><span itemprop="name">AhmedNoddyBodiwala</span></a>, 29 Apr 2013
+					In:
+					
+						<a href='http://forum.codecall.net/forum/122-language-forums/'>Language Forums</a>&nbsp;&rarr;
+					
+
+						<a href='http://forum.codecall.net/forum/127-visual-basic/'>Visual Basic</a>&nbsp;
+					
+					
+						&nbsp; <img src='http://img.codecall.net/public/style_images/master/icon_tag.png' /> <a  href="http://forum.codecall.net/tags/forums/vb/" data-tooltip="Find more content tagged 'vb'"><span>vb</span></a>
+					
+				</span>
+				
+			</td>
+			<td class='col_f_preview __topic_preview'>
+				
+					<a href='http://forum.codecall.net/topic/75320-vbnet-reading-xml-website/' class='expander closed' title='Preview this topic'>&nbsp;</a>
+				
+			</td>
+			<td class='col_f_views desc blend_links'>
+				<ul>
+					<li>
+						
+						
+						
+							<a href="http://forum.codecall.net/index.php?app=forums&amp;module=extras&amp;section=stats&amp;do=who&amp;t=75320" onclick="return ipb.forums.retrieveWhoPosted( 75320 );">6 replies</a>
+					</li>
+					<li class='views desc'>169 views</li>
+				</ul>
+			</td>
+			<td class='col_f_post'>
+				<a href='http://forum.codecall.net/user/17218-wingedpanther/' class='ipsUserPhotoLink left'>
+					<img src='http://uploads.codecall.net/profile/photo-thumb-17218.gif?_r=0' class='ipsUserPhoto ipsUserPhoto_mini' />
+				</a>
+				<ul class='last_post ipsType_small'>
+									<li><a hovercard-ref="member" hovercard-id="17218" data-ipb="noparse" class="_hovertrigger url fn name  " href='http://forum.codecall.net/user/17218-wingedpanther/' title='View Profile'><span itemprop="name"><span style='color:#962d29;font-weight: bold;'>WingedPanther</span></span></a></li>
+					<li>
+						<a href='http://forum.codecall.net/topic/75320-vbnet-reading-xml-website/?view=getlastpost' title='Go to last post'>30 Apr 2013</a>
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</li>
+
+				
+
+					<li>
+	<table class="ipb_table topic_list hover_rows">
+		<tr class='__topic unread expandable' id='trow_75192' data-tid="75192" data-timestamp="1366607483">
+			<td class='col_f_icon altrow short'>
+				
+
+
+<a href='http://forum.codecall.net/topic/75192-gui-file-writing-reading-help/?view=getnewpost' title='Go to first unread post'>
+	
+		<img src='http://img.codecall.net/public/style_images/master/t_unread.png' alt='New Replies' /><br />
+	
+	</a>
+			</td>
+
+			<td class='col_f_content '>
+				
+				<h4> <a id="tid-link-75192" href="http://forum.codecall.net/topic/75192-gui-file-writing-reading-help/" title='- started  20 April 2013 - 01:51 PM' class='topic_title'>GUI File Writing &#38; Reading Help</a></h4>
+				<br />
+				<span class='desc lighter blend_links'>
+										Started by <a hovercard-ref="member" hovercard-id="51630" data-ipb="noparse" class="_hovertrigger url fn name  " href='http://forum.codecall.net/user/51630-johnfrederickziegenhirt/' title='View Profile'><span itemprop="name">JohnFrederickZiegenhirt</span></a>, 20 Apr 2013
+					In:
+					
+						<a href='http://forum.codecall.net/forum/122-language-forums/'>Language Forums</a>&nbsp;&rarr;
+					
+
+						<a href='http://forum.codecall.net/forum/126-java/'>Java</a>&nbsp;
+					
+					
+						&nbsp; <img src='http://img.codecall.net/public/style_images/master/icon_tag.png' /> <a  href="http://forum.codecall.net/tags/forums/gui/" data-tooltip="Find more content tagged 'gui'"><span>gui</span></a>, <a  href="http://forum.codecall.net/tags/forums/filei%252Fo/" data-tooltip="Find more content tagged 'filei/o'"><span>filei/o</span></a>, <a  href="http://forum.codecall.net/tags/forums/writing/" data-tooltip="Find more content tagged 'writing'"><span>writing</span></a>, <a  href="http://forum.codecall.net/tags/forums/reading/" data-tooltip="Find more content tagged 'reading'"><span>reading</span></a> <span hovercard-ref='tagsPopUp' hovercard-id='bf7c1fd7fd10d16f13c81e5ad80d7cf9' class='_hovertrigger clickable'>and 1 more...</span>
+					
+				</span>
+				
+			</td>
+			<td class='col_f_preview __topic_preview'>
+				
+					<a href='http://forum.codecall.net/topic/75192-gui-file-writing-reading-help/' class='expander closed' title='Preview this topic'>&nbsp;</a>
+				
+			</td>
+			<td class='col_f_views desc blend_links'>
+				<ul>
+					<li>
+						
+						
+						
+							<a href="http://forum.codecall.net/index.php?app=forums&amp;module=extras&amp;section=stats&amp;do=who&amp;t=75192" onclick="return ipb.forums.retrieveWhoPosted( 75192 );">1 reply</a>
+					</li>
+					<li class='views desc'>183 views</li>
+				</ul>
+			</td>
+			<td class='col_f_post'>
+				<a href='http://forum.codecall.net/user/32930-unkish/' class='ipsUserPhotoLink left'>
+					<img src='http://www.gravatar.com/avatar/3c69b25cdaf5e846cb7161f5d9a93d8d?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' class='ipsUserPhoto ipsUserPhoto_mini' />
+				</a>
+				<ul class='last_post ipsType_small'>
+									<li><a hovercard-ref="member" hovercard-id="32930" data-ipb="noparse" class="_hovertrigger url fn name  " href='http://forum.codecall.net/user/32930-unkish/' title='View Profile'><span itemprop="name">Unkish</span></a></li>
+					<li>
+						<a href='http://forum.codecall.net/topic/75192-gui-file-writing-reading-help/?view=getlastpost' title='Go to last post'>21 Apr 2013</a>
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</li>
+
+				
+
+					<li>
+	<table class="ipb_table topic_list hover_rows">
+		<tr class='__topic unread expandable' id='trow_71788' data-tid="71788" data-timestamp="1366289266">
+			<td class='col_f_icon altrow short'>
+				
+
+
+<a href='http://forum.codecall.net/topic/71788-reading-excel-files-in-c/?view=getnewpost' title='Go to first unread post'>
+	
+		<img src='http://img.codecall.net/public/style_images/master/t_unread.png' alt='New Replies' /><br />
+	
+	</a>
+			</td>
+
+			<td class='col_f_content '>
+				
+				<h4> <a href="http://forum.codecall.net/index.php?app=forums&amp;module=forums&amp;section=attach&amp;tid=71788" title="1 attachment(s): View" onclick="return ipb.forums.retrieveAttachments( 71788 );"><img src='http://img.codecall.net/public/style_images/master/attachicon.gif'	alt='Attachment' /></a> <a id="tid-link-71788" href="http://forum.codecall.net/topic/71788-reading-excel-files-in-c/" title='- started  10 September 2012 - 08:13 PM' class='topic_title'>Reading Excel Files in C#</a></h4>
+				<br />
+				<span class='desc lighter blend_links'>
+										Started by <a hovercard-ref="member" hovercard-id="40643" data-ipb="noparse" class="_hovertrigger url fn name  " href='http://forum.codecall.net/user/40643-nexusnemesis/' title='View Profile'><span itemprop="name">NexusNemesis</span></a>, 10 Sep 2012
+					In:
+					
+						<a href='http://forum.codecall.net/forum/218-tutorial-forums/'>Tutorial Forums</a>&nbsp;&rarr;
+					
+
+						<a href='http://forum.codecall.net/forum/182-c-tutorials/'>C# Tutorials</a>&nbsp;
+					
+					
+						&nbsp; <img src='http://img.codecall.net/public/style_images/master/icon_tag.png' /> <a  href="http://forum.codecall.net/tags/forums/C%23/" data-tooltip="Find more content tagged 'C#'"><span>C#</span></a>
+					
+				</span>
+				
+			</td>
+			<td class='col_f_preview __topic_preview'>
+				
+					<a href='http://forum.codecall.net/topic/71788-reading-excel-files-in-c/' class='expander closed' title='Preview this topic'>&nbsp;</a>
+				
+			</td>
+			<td class='col_f_views desc blend_links'>
+				<ul>
+					<li>
+						
+						
+						
+							<a href="http://forum.codecall.net/index.php?app=forums&amp;module=extras&amp;section=stats&amp;do=who&amp;t=71788" onclick="return ipb.forums.retrieveWhoPosted( 71788 );">2 replies</a>
+					</li>
+					<li class='views desc'>14,116 views</li>
+				</ul>
+			</td>
+			<td class='col_f_post'>
+				<a href='http://forum.codecall.net/user/40643-nexusnemesis/' class='ipsUserPhotoLink left'>
+					<img src='http://uploads.codecall.net/profile/photo-thumb-40643.png?_r=1346995692' class='ipsUserPhoto ipsUserPhoto_mini' />
+				</a>
+				<ul class='last_post ipsType_small'>
+									<li><a hovercard-ref="member" hovercard-id="40643" data-ipb="noparse" class="_hovertrigger url fn name  " href='http://forum.codecall.net/user/40643-nexusnemesis/' title='View Profile'><span itemprop="name">NexusNemesis</span></a></li>
+					<li>
+						<a href='http://forum.codecall.net/topic/71788-reading-excel-files-in-c/?view=getlastpost' title='Go to last post'>18 Apr 2013</a>
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</li>
+
+				
+			</ul>
+		</div>
+	</div>
+</div>
+<br />
+<!-- Close topic -->
+</div>
+<!-- BOTTOM BUTTONS -->
+
+	<br />
+	<div class='clear clearfix left'>
+		
+
+	<ul class='topic_share left shareButtons ipsList_inline'>
+	
+		<li><a href="http://forum.codecall.net/index.php?sharelink=twitter;aHR0cDovL2ZvcnVtLmNvZGVjYWxsLm5ldC90b3BpYy81MTUyNC1yZWFkaW5nLWFuZC13cml0aW5nLWZpbGVzLWluLWMv;UmVhZGluZyBBbmQgV3JpdGluZyBGaWxlcyBJbiBD" rel="nofollow" target="_blank" title="Share this link via Twitter" class='_slink' id='slink_twitter'><img src="http://img.codecall.net/public/style_extra/sharelinks/twitter.png" /></a></li>
+	
+
+		
+				<li class='fbLike'><div class="fb-like" data-href="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/" data-send="false" data-layout="button_count" data-width="150" data-show-faces="false" data-action="like"></div><div id="fb-root"></div></li>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=129848137088659";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+			
+	
+
+		<li><a href="http://forum.codecall.net/index.php?sharelink=reddit;aHR0cDovL2ZvcnVtLmNvZGVjYWxsLm5ldC90b3BpYy81MTUyNC1yZWFkaW5nLWFuZC13cml0aW5nLWZpbGVzLWluLWMv;UmVhZGluZyBBbmQgV3JpdGluZyBGaWxlcyBJbiBD" rel="nofollow" target="_blank" title="Share this link via Reddit" class='_slink' id='slink_reddit'><img src="http://img.codecall.net/public/style_extra/sharelinks/reddit.png" /></a></li>
+	
+
+		<li><a href="http://forum.codecall.net/index.php?sharelink=stumble;aHR0cDovL2ZvcnVtLmNvZGVjYWxsLm5ldC90b3BpYy81MTUyNC1yZWFkaW5nLWFuZC13cml0aW5nLWZpbGVzLWluLWMv;UmVhZGluZyBBbmQgV3JpdGluZyBGaWxlcyBJbiBD" rel="nofollow" target="_blank" title="Share this link via StumbleUpon" class='_slink' id='slink_stumble'><img src="http://img.codecall.net/public/style_extra/sharelinks/stumble.png" /></a></li>
+	
+
+		<li><a href="http://forum.codecall.net/index.php?sharelink=digg;aHR0cDovL2ZvcnVtLmNvZGVjYWxsLm5ldC90b3BpYy81MTUyNC1yZWFkaW5nLWFuZC13cml0aW5nLWZpbGVzLWluLWMv;UmVhZGluZyBBbmQgV3JpdGluZyBGaWxlcyBJbiBD" rel="nofollow" target="_blank" title="Share this link via Digg" class='_slink' id='slink_digg'><img src="http://img.codecall.net/public/style_extra/sharelinks/digg.png" /></a></li>
+	
+
+		<li><a href="http://forum.codecall.net/index.php?sharelink=delicious;aHR0cDovL2ZvcnVtLmNvZGVjYWxsLm5ldC90b3BpYy81MTUyNC1yZWFkaW5nLWFuZC13cml0aW5nLWZpbGVzLWluLWMv;UmVhZGluZyBBbmQgV3JpdGluZyBGaWxlcyBJbiBD" rel="nofollow" target="_blank" title="Share this link via Del.icio.us" class='_slink' id='slink_delicious'><img src="http://img.codecall.net/public/style_extra/sharelinks/delicious.png" /></a></li>
+	
+
+		
+				<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+	
+		{lang: 'en-GB'}
+	
+</script>
+<li><div class='googlePlusOne'><g:plusone count="false" size="small"></g:plusone></div></li>
+			
+	
+
+		<li><a href="http://forum.codecall.net/index.php?sharelink=email;aHR0cDovL2ZvcnVtLmNvZGVjYWxsLm5ldC90b3BpYy81MTUyNC1yZWFkaW5nLWFuZC13cml0aW5nLWZpbGVzLWluLWMv;UmVhZGluZyBBbmQgV3JpdGluZyBGaWxlcyBJbiBD" rel="nofollow" target="_blank" title="Share this link via Email" class='_slink' id='slink_email'><img src="http://img.codecall.net/public/style_extra/sharelinks/email.png" /></a></li>
+	
+
+		<li><a href="http://forum.codecall.net/index.php?sharelink=print;aHR0cDovL2ZvcnVtLmNvZGVjYWxsLm5ldC90b3BpYy81MTUyNC1yZWFkaW5nLWFuZC13cml0aW5nLWZpbGVzLWluLWMv;UmVhZGluZyBBbmQgV3JpdGluZyBGaWxlcyBJbiBD" rel="nofollow" target="_blank" title="Print" class='_slink' id='slink_print'><img src="http://img.codecall.net/public/style_extra/sharelinks/print.png" /></a></li>
+	
+
+		<li><a href="http://forum.codecall.net/index.php?sharelink=download;aHR0cDovL2ZvcnVtLmNvZGVjYWxsLm5ldC90b3BpYy81MTUyNC1yZWFkaW5nLWFuZC13cml0aW5nLWZpbGVzLWluLWMv;UmVhZGluZyBBbmQgV3JpdGluZyBGaWxlcyBJbiBD" rel="nofollow" target="_blank" title="Download" class='_slink' id='slink_download'><img src="http://img.codecall.net/public/style_extra/sharelinks/download.png" /></a></li>
+	
+
+		<li><a href="http://forum.codecall.net/index.php?sharelink=blogthis;aHR0cDovL2ZvcnVtLmNvZGVjYWxsLm5ldC90b3BpYy81MTUyNC1yZWFkaW5nLWFuZC13cml0aW5nLWZpbGVzLWluLWMv;UmVhZGluZyBBbmQgV3JpdGluZyBGaWxlcyBJbiBD" rel="nofollow" target="_blank" title="Share this link via Blog This" class='_slink' id='slink_blogthis'><img src="http://img.codecall.net/public/style_extra/sharelinks/blogthis.png" /></a></li>
+	
+	</ul>
+	<script type="text/javascript">
+		ipb.sharelinks.url   = "http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/";
+		ipb.sharelinks.title = "Reading And Writing Files In C";
+		ipb.sharelinks.bname = "Codecall";
+	</script>
+
+	</div>
+	<br />
+
+<!-- SAME TAGGED -->
+
+	<br />
+	<div class='ipsBox'>
+		<h3 class='maintitle'>Also tagged with one or more of these keywords: hello world, read, write, file</h3>
+		<div class='ipsBox_container'>
+			<table class='ipb_table topic_list'>
+			
+				<tr itemscope itemtype="http://schema.org/Article" class='__topic unread expandable' id='trow_75353' data-tid="75353">
+	<td class='col_f_icon altrow short'>
+		
+
+
+<a href='http://forum.codecall.net/topic/75353-eof/?view=getnewpost' title='Go to first unread post'>
+	
+		<img src='http://img.codecall.net/public/style_images/master/t_unread.png' alt='New Replies' /><br />
+	
+	</a>
+	</td>
+	<td class='col_f_content '>
+		
+			<a href="http://forum.codecall.net/index.php?app=forums&amp;module=forums&amp;section=findpost&amp;pid=658050"><span class='ipsBadge has_icon ipsBadge_green'><img class='icon' src="http://img.codecall.net/public/style_images/master/icon_check_white_8px.png"> Answered</span></a>
+		
+		
+		
+		
+		
+		
+			
+				<a href="http://forum.codecall.net/forum/122-language-forums/" class="ipsText_small desc">Language Forums</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+
+				<a href="http://forum.codecall.net/forum/123-c-and-c/" class="ipsText_small desc">C and C++</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+		
+		
+		<h4>
+			<a itemprop="url" id="tid-link-75353" href="http://forum.codecall.net/topic/75353-eof/" title='EOF - started  02 May 2013 - 04:33 PM' class='topic_title' >
+				<span itemprop="name">EOF</span>
+			</a>
+		</h4>
+		<br />
+		<span class='desc lighter blend_links'>
+			Started by <a hovercard-ref="member" hovercard-id="31714" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/31714-alcamech/' title='View Profile'><span itemprop="name">Alcamech</span></a>, <span itemprop="dateCreated">02 May 2013</span>
+			
+				&nbsp; <img src='http://img.codecall.net/public/style_images/master/icon_tag.png' /> <a  href="http://forum.codecall.net/tags/forums/c/" data-tooltip="Find more content tagged 'c'"><span>c</span></a>, <a  href="http://forum.codecall.net/tags/forums/programming/" data-tooltip="Find more content tagged 'programming'"><span>programming</span></a>, <a  href="http://forum.codecall.net/tags/forums/automatically/" data-tooltip="Find more content tagged 'automatically'"><span>automatically</span></a> <span hovercard-ref='tagsPopUp' hovercard-id='6a59df287da9e32f4bcc80dec4060aa5' class='_hovertrigger clickable'>and 7 more...</span>
+			
+		</span>
+		
+	</td>
+	
+	<td class='col_f_preview __topic_preview'>
+		<a href='http://forum.codecall.net/topic/75353-eof/' class='expander closed' title='Preview this topic'>&nbsp;</a>
+	</td>
+	
+	<td class='col_f_views desc blend_links'>
+		<ul>
+			<li>
+				
+						<span class='ipsBadge ipsBadge_orange'>Hot</span>&nbsp;
+					
+					9 replies
+					<meta itemprop="interactionCount" content="UserComments:9"/>
+			</li>
+			<li class='views desc'>173 views</li>
+		</ul>
+	</td>
+	<td class='col_f_post'>
+		
+	<a href='http://forum.codecall.net/user/28099-luthfi/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-28099.gif?_r=0' alt='EOF - last post by Luthfi' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+		<ul class='last_post ipsType_small'>
+			<li><a hovercard-ref="member" hovercard-id="28099" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/28099-luthfi/' title='View Profile'><span itemprop="name">Luthfi</span></a></li>
+			<li>
+				<a href='http://forum.codecall.net/topic/75353-eof/?view=getlastpost' title='Go to last post: EOF'>
+					
+						02 May 2013
+					
+				</a>
+			</li>
+		</ul>
+	</td>
+	
+</tr>
+
+			
+
+				<tr itemscope itemtype="http://schema.org/Article" class='__topic unread expandable' id='trow_75145' data-tid="75145">
+	<td class='col_f_icon altrow short'>
+		
+
+
+<a href='http://forum.codecall.net/topic/75145-read-from-a-file-that-has-1-word-per-line-on-2-lines/?view=getnewpost' title='Go to first unread post'>
+	
+		<img src='http://img.codecall.net/public/style_images/master/t_unread.png' alt='New Replies' /><br />
+	
+	</a>
+	</td>
+	<td class='col_f_content '>
+		
+		
+		
+		
+		
+		
+			
+				<a href="http://forum.codecall.net/forum/122-language-forums/" class="ipsText_small desc">Language Forums</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+
+				<a href="http://forum.codecall.net/forum/129-other-languages/" class="ipsText_small desc">Other Languages</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+
+				<a href="http://forum.codecall.net/forum/187-assembly/" class="ipsText_small desc">Assembly</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+		
+		
+		<h4>
+			<a itemprop="url" id="tid-link-75145" href="http://forum.codecall.net/topic/75145-read-from-a-file-that-has-1-word-per-line-on-2-lines/" title='Read from a file that has 1 word per line on 2 lines - started  16 April 2013 - 05:47 PM' class='topic_title' >
+				<span itemprop="name">Read from a file that has 1 word per line on 2 lines</span>
+			</a>
+		</h4>
+		<br />
+		<span class='desc lighter blend_links'>
+			Started by <a hovercard-ref="member" hovercard-id="51597" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/51597-gpfs7/' title='View Profile'><span itemprop="name">gpfs7</span></a>, <span itemprop="dateCreated">16 Apr 2013</span>
+			
+				&nbsp; <img src='http://img.codecall.net/public/style_images/master/icon_tag.png' /> <a  href="http://forum.codecall.net/tags/forums/mips/" data-tooltip="Find more content tagged 'mips'"><span>mips</span></a>, <a  href="http://forum.codecall.net/tags/forums/read/" data-tooltip="Find more content tagged 'read'"><span>read</span></a>, <a  href="http://forum.codecall.net/tags/forums/file/" data-tooltip="Find more content tagged 'file'"><span>file</span></a>
+			
+		</span>
+		
+	</td>
+	
+	<td class='col_f_preview __topic_preview'>
+		<a href='http://forum.codecall.net/topic/75145-read-from-a-file-that-has-1-word-per-line-on-2-lines/' class='expander closed' title='Preview this topic'>&nbsp;</a>
+	</td>
+	
+	<td class='col_f_views desc blend_links'>
+		<ul>
+			<li>
+				
+					1 reply
+					<meta itemprop="interactionCount" content="UserComments:1"/>
+			</li>
+			<li class='views desc'>281 views</li>
+		</ul>
+	</td>
+	<td class='col_f_post'>
+		
+	<a href='http://forum.codecall.net/user/18080-dargueta/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-18080.gif?_r=0' alt='Read from a file that has 1 word per line on 2 lines - last post by dargueta' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+		<ul class='last_post ipsType_small'>
+			<li><a hovercard-ref="member" hovercard-id="18080" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/18080-dargueta/' title='View Profile'><span itemprop="name">dargueta</span></a></li>
+			<li>
+				<a href='http://forum.codecall.net/topic/75145-read-from-a-file-that-has-1-word-per-line-on-2-lines/?view=getlastpost' title='Go to last post: Read from a file that has 1 word per line on 2 lines'>
+					
+						16 Apr 2013
+					
+				</a>
+			</li>
+		</ul>
+	</td>
+	
+</tr>
+
+			
+
+				<tr itemscope itemtype="http://schema.org/Article" class='__topic  expandable' id='trow_74911' data-tid="74911">
+	<td class='col_f_icon altrow short'>
+		
+
+
+
+	</td>
+	<td class='col_f_content '>
+		
+		
+		
+		
+		
+		
+			
+				<a href="http://forum.codecall.net/forum/122-language-forums/" class="ipsText_small desc">Language Forums</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+
+				<a href="http://forum.codecall.net/forum/127-visual-basic/" class="ipsText_small desc">Visual Basic</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+		
+		
+		<h4>
+			<a itemprop="url" id="tid-link-74911" href="http://forum.codecall.net/topic/74911-could-someone-assist-me-in-coding-a-simple-button-to-load-txt-to-combo-box/" title='Could someone assist me in coding a simple button to load txt to combo box? - started  26 March 2013 - 10:14 PM' class='topic_title' >
+				<span itemprop="name">Could someone assist me in coding a simple button to load txt to combo box?</span>
+			</a>
+		</h4>
+		<br />
+		<span class='desc lighter blend_links'>
+			Started by <a hovercard-ref="member" hovercard-id="29401" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/29401-codegirl/' title='View Profile'><span itemprop="name">codegirl</span></a>, <span itemprop="dateCreated">26 Mar 2013</span>
+			
+				&nbsp; <img src='http://img.codecall.net/public/style_images/master/icon_tag.png' /> <a  href="http://forum.codecall.net/tags/forums/vb.net/" data-tooltip="Find more content tagged 'vb.net'"><span>vb.net</span></a>, <a  href="http://forum.codecall.net/tags/forums/combobox/" data-tooltip="Find more content tagged 'combobox'"><span>combobox</span></a>, <a  href="http://forum.codecall.net/tags/forums/text/" data-tooltip="Find more content tagged 'text'"><span>text</span></a>, <a  href="http://forum.codecall.net/tags/forums/file/" data-tooltip="Find more content tagged 'file'"><span>file</span></a> <span hovercard-ref='tagsPopUp' hovercard-id='93cf18dc702e5c99c8e0d1b8524c3186' class='_hovertrigger clickable'>and 1 more...</span>
+			
+		</span>
+		
+			<ul class='mini_pagination'>
+			
+					
+						<li><a href="http://forum.codecall.net/topic/74911-could-someone-assist-me-in-coding-a-simple-button-to-load-txt-to-combo-box/page-1" title='Could someone assist me in coding a simple button to load txt to combo box? - page 1'>1</a></li>
+					
+			
+
+					
+						<li><a href="http://forum.codecall.net/topic/74911-could-someone-assist-me-in-coding-a-simple-button-to-load-txt-to-combo-box/page-2" title='Could someone assist me in coding a simple button to load txt to combo box? - page 2'>2</a></li>
+					
+			
+			</ul>
+		
+	</td>
+	
+	<td class='col_f_preview __topic_preview'>
+		<a href='http://forum.codecall.net/topic/74911-could-someone-assist-me-in-coding-a-simple-button-to-load-txt-to-combo-box/' class='expander closed' title='Preview this topic'>&nbsp;</a>
+	</td>
+	
+	<td class='col_f_views desc blend_links'>
+		<ul>
+			<li>
+				
+						<span class='ipsBadge ipsBadge_orange'>Hot</span>&nbsp;
+					
+					13 replies
+					<meta itemprop="interactionCount" content="UserComments:13"/>
+			</li>
+			<li class='views desc'>660 views</li>
+		</ul>
+	</td>
+	<td class='col_f_post'>
+		
+	<a href='http://forum.codecall.net/user/29401-codegirl/' class='ipsUserPhotoLink left'>
+
+<img src='http://www.gravatar.com/avatar/29671121da4db65ad77865df9092c87c?s=100&amp;d=http%3A%2F%2Fimg.codecall.net%2Fpublic%2Fstyle_images%2Fmaster%2Fprofile%2Fdefault_large.png' alt='Could someone assist me in coding a simple button to load txt to combo box? - last post by codegirl' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+		<ul class='last_post ipsType_small'>
+			<li><a hovercard-ref="member" hovercard-id="29401" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/29401-codegirl/' title='View Profile'><span itemprop="name">codegirl</span></a></li>
+			<li>
+				<a href='http://forum.codecall.net/topic/74911-could-someone-assist-me-in-coding-a-simple-button-to-load-txt-to-combo-box/?view=getlastpost' title='Go to last post: Could someone assist me in coding a simple button to load txt to combo box?'>
+					
+						30 Mar 2013
+					
+				</a>
+			</li>
+		</ul>
+	</td>
+	
+</tr>
+
+			
+
+				<tr itemscope itemtype="http://schema.org/Article" class='__topic  expandable' id='trow_74793' data-tid="74793">
+	<td class='col_f_icon altrow short'>
+		
+
+
+
+	</td>
+	<td class='col_f_content '>
+		
+		
+		
+		
+		
+		
+			
+				<a href="http://forum.codecall.net/forum/122-language-forums/" class="ipsText_small desc">Language Forums</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+
+				<a href="http://forum.codecall.net/forum/129-other-languages/" class="ipsText_small desc">Other Languages</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+
+				<a href="http://forum.codecall.net/forum/128-pascal-and-delphi/" class="ipsText_small desc">Pascal and Delphi</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+		
+		
+		<h4>
+			<a itemprop="url" id="tid-link-74793" href="http://forum.codecall.net/topic/74793-open-files-readwrite-and-addresses-in-files-in-delphi/" title='Open files, read/write and addresses in files in Delphi - started  17 March 2013 - 12:11 PM' class='topic_title' >
+				<span itemprop="name">Open files, read/write and addresses in files in Delphi</span>
+			</a>
+		</h4>
+		<br />
+		<span class='desc lighter blend_links'>
+			Started by <a hovercard-ref="member" hovercard-id="42138" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/42138-dchaps/' title='View Profile'><span itemprop="name">Dchaps</span></a>, <span itemprop="dateCreated">17 Mar 2013</span>
+			
+				&nbsp; <img src='http://img.codecall.net/public/style_images/master/icon_tag.png' /> <a  href="http://forum.codecall.net/tags/forums/memory%2Blocations/" data-tooltip="Find more content tagged 'memory locations'"><span>memory locations</span></a>, <a  href="http://forum.codecall.net/tags/forums/delphi/" data-tooltip="Find more content tagged 'delphi'"><span>delphi</span></a>, <a  href="http://forum.codecall.net/tags/forums/open/" data-tooltip="Find more content tagged 'open'"><span>open</span></a> <span hovercard-ref='tagsPopUp' hovercard-id='81f0561cbd39fad3a31731779df30d44' class='_hovertrigger clickable'>and 4 more...</span>
+			
+		</span>
+		
+	</td>
+	
+	<td class='col_f_preview __topic_preview'>
+		<a href='http://forum.codecall.net/topic/74793-open-files-readwrite-and-addresses-in-files-in-delphi/' class='expander closed' title='Preview this topic'>&nbsp;</a>
+	</td>
+	
+	<td class='col_f_views desc blend_links'>
+		<ul>
+			<li>
+				
+					5 replies
+					<meta itemprop="interactionCount" content="UserComments:5"/>
+			</li>
+			<li class='views desc'>549 views</li>
+		</ul>
+	</td>
+	<td class='col_f_post'>
+		
+	<a href='http://forum.codecall.net/user/28099-luthfi/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-28099.gif?_r=0' alt='Open files, read/write and addresses in files in Delphi - last post by Luthfi' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+		<ul class='last_post ipsType_small'>
+			<li><a hovercard-ref="member" hovercard-id="28099" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/28099-luthfi/' title='View Profile'><span itemprop="name">Luthfi</span></a></li>
+			<li>
+				<a href='http://forum.codecall.net/topic/74793-open-files-readwrite-and-addresses-in-files-in-delphi/?view=getlastpost' title='Go to last post: Open files, read/write and addresses in files in Delphi'>
+					
+						20 Mar 2013
+					
+				</a>
+			</li>
+		</ul>
+	</td>
+	
+</tr>
+
+			
+
+				<tr itemscope itemtype="http://schema.org/Article" class='__topic  expandable' id='trow_74704' data-tid="74704">
+	<td class='col_f_icon altrow short'>
+		
+
+
+
+	</td>
+	<td class='col_f_content '>
+		
+		
+		
+		
+		
+		
+			
+				<a href="http://forum.codecall.net/forum/122-language-forums/" class="ipsText_small desc">Language Forums</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+
+				<a href="http://forum.codecall.net/forum/127-visual-basic/" class="ipsText_small desc">Visual Basic</a> <span class="ipsText_small desc">&rarr;</span>&nbsp;
+			
+		
+		
+		<h4>
+			<a itemprop="url" id="tid-link-74704" href="http://forum.codecall.net/topic/74704-uncompress-a-file-with-czlibcls-module/" title='Uncompress a file with cZLIB.cls module - started  09 March 2013 - 06:21 AM' class='topic_title' >
+				<span itemprop="name">Uncompress a file with cZLIB.cls module</span>
+			</a>
+		</h4>
+		<br />
+		<span class='desc lighter blend_links'>
+			Started by <a hovercard-ref="member" hovercard-id="50219" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/50219-coreyhiscock/' title='View Profile'><span itemprop="name">CoreyHiscock</span></a>, <span itemprop="dateCreated">09 Mar 2013</span>
+			
+				&nbsp; <img src='http://img.codecall.net/public/style_images/master/icon_tag.png' /> <a  href="http://forum.codecall.net/tags/forums/module/" data-tooltip="Find more content tagged 'module'"><span>module</span></a>, <a  href="http://forum.codecall.net/tags/forums/uncompress/" data-tooltip="Find more content tagged 'uncompress'"><span>uncompress</span></a>, <a  href="http://forum.codecall.net/tags/forums/file/" data-tooltip="Find more content tagged 'file'"><span>file</span></a>, <a  href="http://forum.codecall.net/tags/forums/czlib/" data-tooltip="Find more content tagged 'czlib'"><span>czlib</span></a>
+			
+		</span>
+		
+	</td>
+	
+	<td class='col_f_preview __topic_preview'>
+		<a href='http://forum.codecall.net/topic/74704-uncompress-a-file-with-czlibcls-module/' class='expander closed' title='Preview this topic'>&nbsp;</a>
+	</td>
+	
+	<td class='col_f_views desc blend_links'>
+		<ul>
+			<li>
+				
+					1 reply
+					<meta itemprop="interactionCount" content="UserComments:1"/>
+			</li>
+			<li class='views desc'>216 views</li>
+		</ul>
+	</td>
+	<td class='col_f_post'>
+		
+	<a href='http://forum.codecall.net/user/50910-zerogiven/' class='ipsUserPhotoLink left'>
+
+<img src='http://uploads.codecall.net/profile/photo-thumb-50910.jpg?_r=1362166796' alt='Uncompress a file with cZLIB.cls module - last post by zeroGiven' class='ipsUserPhoto ipsUserPhoto_mini' />
+
+	</a>
+
+		<ul class='last_post ipsType_small'>
+			<li><a hovercard-ref="member" hovercard-id="50910" data-ipb="noparse" class="_hovertrigger url fn name " href='http://forum.codecall.net/user/50910-zerogiven/' title='View Profile'><span itemprop="name">zeroGiven</span></a></li>
+			<li>
+				<a href='http://forum.codecall.net/topic/74704-uncompress-a-file-with-czlibcls-module/?view=getlastpost' title='Go to last post: Uncompress a file with cZLIB.cls module'>
+					
+						09 Mar 2013
+					
+				</a>
+			</li>
+		</ul>
+	</td>
+	
+</tr>
+
+			
+			</table>
+		</div>
+	</div>
+
+<!-- ACTIVE USERS -->
+
+
+
+	<script type="text/javascript" src="http://cdn.codecall.net/public/js/3rd_party/prettify/prettify.js"></script>
+	<script type='text/javascript' src='http://cdn.codecall.net/public/js/3rd_party/prettify/lang-sql.js'></script>
+	<!-- By default we load generic code, php, css, sql and xml/html; load others here if desired -->
+	<script type="text/javascript">
+	//<![CDATA[
+		Event.observe( window, 'load', function(e){ prettyPrint() });
+	//]]>
+	</script>
+<div id='multiQuoteInsert' style='display: none;' class='ipsFloatingAction'>
+	<span class='ipsButton no_width' id='mqbutton'>Reply to quoted posts</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='multiQuoteClear' class='ipsType_smaller desc' title='Clear the posts you have selected with MultiQuote'>Clear</a> &nbsp;&nbsp;&nbsp;
+</div>
+<form id="modform" method="post" action="http://forum.codecall.net/index.php?">
+	<input type="hidden" name="app" value="forums" />
+	<input type="hidden" name="module" value="moderate" />
+	<input type="hidden" name="section" value="moderate" />
+	<input type="hidden" name="do" value="postchoice" />
+	<input type="hidden" name="f" value="161" />
+	<input type="hidden" name="t" value="51524" />
+	<input type="hidden" name="auth_key" value="880ea6a14ea49e853634fbdc5015a024" />
+	<input type="hidden" name="st" value="" />
+	<input type="hidden" value="" name="selectedpidsJS" id='selectedpidsJS' />
+	<input type="hidden" name="tact" id="tact" value="" />
+</form>
+	</div>
+</div>
+				
+					<div class='ipsAd'><div align='center' class='nexusad'><br />
+<div style="width:750px ; height:90px ;margin-left: auto ;margin-right: auto ;">
+<!-- BuySellAds Zone Code -->
+<div id="bsap_1285543" class="bsarocks bsap_fe0c97c496643c0ab9c6ea026ef481e1"></div>
+<!-- End BuySellAds Zone Code -->
+</div></div></div>
+				
+				<ol class='breadcrumb bottom ipsList_inline left clearfix clear'>
+											<li><a href='http://forum.codecall.net/'>Codecall</a></li>
+							
+						
+							<li><span class='nav_sep'>&rarr;</span> <a href='http://forum.codecall.net/forum/218-tutorial-forums/' title='Return to Tutorial Forums'><span>Tutorial Forums</span></a></li>
+							
+						
+
+							<li><span class='nav_sep'>&rarr;</span> <a href='http://forum.codecall.net/forum/161-cc-tutorials/' title='Return to C/C++ Tutorials'><span>C/C++ Tutorials</span></a></li>
+							
+						
+
+					
+					<li class='right ipsType_smaller'>
+						<a rel="nofollow" href='http://forum.codecall.net/privacypolicy/'>Privacy Policy</a>
+					</li>
+					
+					<li class='right ipsType_smaller'>
+							<a href='http://forum.codecall.net/index.php?app=forums&amp;module=extras&amp;section=boardrules'>Guidelines</a> &middot; 
+						</li>	
+				</ol>
+			</div>
+			<!-- ::: FOOTER (Change skin, language, mark as read, etc) ::: -->
+			<div id='footer_utilities' class='main_width clearfix clear'>
+				<a rel="nofollow" href='#top' id='backtotop' title='Go to top'><img src='http://img.codecall.net/public/style_images/master/top.png' alt='' /></a>
+				<ul class='ipsList_inline left'>
+					<li>
+						<img src='http://img.codecall.net/public/style_images/master/feed.png' alt='RSS Feed' id='rss_feed' class='clickable' />
+					</li>
+					
+							
+								<li>
+									<a rel="nofollow" id='new_skin' href='#'>Change Theme</a>			
+									<ul id='new_skin_menucontent' class='ipbmenu_content with_checks' style='display: none'>
+										
+											<li >
+												<a href='#' data-clicklaunch='changeSkin' data-skinid='27'>Codecall Unlimited</a>
+											</li>
+										
+
+											<li >
+												<a href='#' data-clicklaunch='changeSkin' data-skinid='1'>IP.Board</a>
+											</li>
+										
+
+											<li >
+												<a href='#' data-clicklaunch='changeSkin' data-skinid='2'>IP.Board Mobile</a>
+											</li>
+										
+
+											<li class='selected'>
+												<a href='#' data-clicklaunch='changeSkin' data-skinid='31'>Codecall 2013</a>
+											</li>
+										
+									</ul>
+								</li>
+							
+					
+					
+						<li>
+							<a rel="nofollow" id='mark_all_read' href="http://forum.codecall.net/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=all&amp;k=880ea6a14ea49e853634fbdc5015a024" title='Mark all as read'>Mark Community Read</a>
+							<ul id='mark_all_read_menucontent' class='ipbmenu_content' style='display: none'>
+								
+									<li>
+										
+									</li>
+								
+
+									<li>
+										<a href="http://forum.codecall.net/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=app&amp;markApp=blog&amp;k=880ea6a14ea49e853634fbdc5015a024">Blogs</a>
+									</li>
+								
+
+									<li>
+										<a href="http://forum.codecall.net/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=app&amp;markApp=gallery&amp;k=880ea6a14ea49e853634fbdc5015a024">Gallery</a>
+									</li>
+								
+
+									<li>
+										<a href="http://forum.codecall.net/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=app&amp;markApp=forums&amp;k=880ea6a14ea49e853634fbdc5015a024">Forums</a>
+									</li>
+								
+
+									<li>
+										<a href="http://forum.codecall.net/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=app&amp;markApp=members&amp;k=880ea6a14ea49e853634fbdc5015a024">Members</a>
+									</li>
+								
+
+									<li>
+										<a href="http://forum.codecall.net/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=app&amp;markApp=ccs&amp;k=880ea6a14ea49e853634fbdc5015a024">Pages</a>
+									</li>
+								
+
+									<li>
+										<a href="http://forum.codecall.net/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=app&amp;markApp=nexus&amp;k=880ea6a14ea49e853634fbdc5015a024">Store</a>
+									</li>
+								
+								<li>
+									<a href="http://forum.codecall.net/index.php?app=forums&amp;module=forums&amp;section=markasread&amp;marktype=all&amp;k=880ea6a14ea49e853634fbdc5015a024"><strong>Mark all as read</strong></a>
+								</li>
+							</ul>
+						</li>
+					<li><a href='http://forum.codecall.net/index.php?s=76e5c068a90d819ddb2b3f1644961299&amp;app=nexus&module=support&section=new'>Contact Us</a></li>
+					<li>
+						<a href="http://forum.codecall.net/index.php?app=core&amp;module=help" title='View help' rel="help" accesskey='6'>Help</a>
+					</li>				
+				</ul>
+				<!-- Copyright Information -->
+        				  <p id='copyright'>
+        				  	<a href='http://www.invisionpower.com/apps/board/' title='Community Forum Software by Invision Power Services'>Community Forum Software by IP.Board</a></p>
+		<!-- / Copyright -->
+			</div>
+			
+			
+			
+				<script type='text/javascript' src='http://forum.codecall.net/public/js/3rd_party/lightbox.js'></script>
+<script type='text/javascript'>
+//<![CDATA[
+	// Lightbox Configuration
+	LightboxOptions = Object.extend({
+	    fileLoadingImage:        'http://img.codecall.net/public/style_images/master/lightbox/loading.gif',     
+	    fileBottomNavCloseImage: 'http://img.codecall.net/public/style_images/master/lightbox/closelabel.gif',
+	    overlayOpacity: 0.8,   // controls transparency of shadow overlay
+	    animate: true,         // toggles resizing animations
+	    resizeSpeed: 10,        // controls the speed of the image resizing animations (1=slowest and 10=fastest)
+	    borderSize: 10,         //if you adjust the padding in the CSS, you will need to update this variable
+		// When grouping images this is used to write: Image # of #.
+		// Change it for non-english localization
+		labelImage: "Image",
+		labelOf: "of"
+	}, window.LightboxOptions || {});
+/* Watch for a lightbox image and set up our downloadbutton watcher */
+document.observe('click', (function(event){
+    var target = event.findElement('a[rel*="lightbox"]') || event.findElement('area[rel*="lightbox"]') || event.findElement('span[rel*="lightbox"]');
+    if (target) {
+        event.stop();
+        gbl_addDownloadButton();
+    }
+}).bind(this));
+var _to    = '';
+var _last  = '';
+function gbl_addDownloadButton()
+{
+	if ( typeof( ipsLightbox.lightboxImage ) != 'undefined' && ipsLightbox.lightboxImage.src )
+	{
+		if ( _last != ipsLightbox.lightboxImage.src )
+		{
+			if ( ! $('gbl_d') )
+			{
+				$('bottomNav').insert( { top: "<div id='gbl_d' style='text-align:right;padding-bottom:4px;'></div>" } );
+			}
+			
+			$('gbl_d').update( "<a href='"+ ipsLightbox.lightboxImage.src + "' target='_blank'><img src='http://img.codecall.net/public/style_images/master/lightbox/download-icon.png' /></a>" );
+			
+			_last = ipsLightbox.lightboxImage.src;
+		}
+	}
+	
+	/* Check for init and then keep checking for new image */
+	_to = setTimeout( "gbl_addDownloadButton()", 1000 );
+}
+//]]>
+</script>
+			
+			<div id='inline_login_form' style="display:none">
+		<form action="http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=login&amp;do=process" method="post" id='login'>
+				<input type='hidden' name='auth_key' value='880ea6a14ea49e853634fbdc5015a024' />
+				<input type="hidden" name="referer" value="http://forum.codecall.net/topic/51524-reading-and-writing-files-in-c/" />
+				<h3>Sign In</h3>
+				<div class='ipsBox_notice'>
+						<ul class='ipsList_inline'>
+							
+								<li><a href="http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=login&amp;serviceClick=facebook" class='ipsButton_secondary'><img src="http://img.codecall.net/public/style_images/master/loginmethods/facebook.png" alt="Facebook" /> &nbsp; Use Facebook</a></li>
+							
+							
+								<li><a href="http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=login&amp;serviceClick=twitter" class='ipsButton_secondary'><img src="http://img.codecall.net/public/style_images/master/loginmethods/twitter.png" alt="Twitter" /> &nbsp; Use Twitter</a></li>
+							
+							
+							
+						</ul>
+					</div>
+				<br />
+				<div class='ipsForm ipsForm_horizontal'>
+					<fieldset>
+						<ul>
+							<li class='ipsField'>
+								<div class='ipsField_content'>
+									Need an account? <a href="http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=register" title='Register now!'>Register now!</a>
+								</div>
+							</li>
+							<li class='ipsField ipsField_primary'>
+								<label for='ips_username' class='ipsField_title'>Username</label>
+								<div class='ipsField_content'>
+									<input id='ips_username' type='text' class='input_text' name='ips_username' size='30' tabindex='0' />
+								</div>
+							</li>
+							<li class='ipsField ipsField_primary'>
+								<label for='ips_password' class='ipsField_title'>Forum Password</label>
+								<div class='ipsField_content'>
+									<input id='ips_password' type='password' class='input_text' name='ips_password' size='30' tabindex='0' /><br />
+									<a href='http://forum.codecall.net/index.php?app=core&amp;module=global&amp;section=lostpass' title='Retrieve password'>I've forgotten my password</a>
+								</div>
+							</li>
+							<li class='ipsField ipsField_checkbox'>
+								<input type='checkbox' id='inline_remember' checked='checked' name='rememberMe' value='1' class='input_check' tabindex='0' />
+								<div class='ipsField_content'>
+									<label for='inline_remember'>
+										<strong>Remember me</strong><br />
+										<span class='desc lighter'>This is not recommended for shared computers</span>
+									</label>
+								</div>
+							</li>
+							
+							
+							<li class='ipsPad_top ipsForm_center desc ipsType_smaller'>
+								<a rel="nofollow" href='http://forum.codecall.net/privacypolicy/'>Privacy Policy</a>
+							</li>
+							
+						</ul>
+					</fieldset>
+					
+					<div class='ipsForm_submit ipsForm_center'>
+						<input type='submit' class='ipsButton' value='Sign In' tabindex='0' />
+					</div>
+				</div>
+			</form>
+	</div>
+		</div>
+		
+		
+		<script type='text/javascript'>
+			if( $('primary_nav') ){	ipb.global.activateMainMenu(); }
+		</script>
+			</body>
+</html>

@@ -1,0 +1,7 @@
+www.inconteam.com/software-development/41-encryption/55-aes-test-vectors#aes-ecb-128
+
+https://polarssl.org/discussions/generic/question-about-using-aes
+https://github.com/polarssl/polarssl
+https://polarssl.org/source-code
+https://polarssl.org/api/config_8h_source.html
+https://polarssl.org/aes-source-code

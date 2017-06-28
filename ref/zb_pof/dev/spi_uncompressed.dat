@@ -1,0 +1,1396 @@
+00  //iocsr frame start (start dword) 3
+00
+00
+00
+F0  //iocsr data start
+AB
+A3
+DB
+09
+01
+1B
+83
+F4
+E5
+69
+DB
+04
+70
+51
+2E
+C8
+03
+48
+81
+85
+30
+D3
+21
+13
+36
+50
+57
+E5
+21
+AB
+73
+6C
+EB
+0B
+9B
+95
+66
+45
+A0
+9F
+64
+EE
+3D
+36
+BE
+A7
+7B
+87
+16
+CB
+81
+3A
+83
+4A
+E9
+85
+BE
+E8
+49
+49
+3E
+37
+E6
+77
+21
+46
+BE
+FC
+4F
+DC
+3E
+36
+4E
+17
+AA
+F5
+39
+27
+8A
+91
+E4
+13
+1C
+A5
+01
+83
+D9
+C5
+5F
+35
+B1
+BA
+70
+1B
+1F
+05
+51
+AA
+81
+E1
+6F
+60
+68
+60
+F6
+A9
+3F
+F4
+3C
+E0
+23
+A1
+75
+54
+97
+97
+F3
+9D
+13
+E5
+26
+C0
+F9
+34
+AB
+18
+46
+36
+80
+5F
+7B
+BB
+DA
+5C
+1B
+84
+5C
+19
+3A
+D4
+AC
+B1
+1F
+EC
+5D
+4E
+6F
+E9
+CF
+39
+3F
+E8
+E9
+12
+86
+1E
+4B
+BF
+0F
+4A
+B6
+BC
+C9
+97
+2C
+64
+11
+AB
+5F
+CF
+B5
+80
+C9
+C1
+CD
+7B
+F4
+35
+D3
+7C
+D3
+29
+4E
+D7
+4D
+C1
+02
+86
+5C
+EC
+F7
+61
+54
+F2
+A2
+54
+2B
+6A
+89
+80
+1C
+F8
+33
+8B
+EF
+B5
+59
+18
+A7
+51
+65
+E6
+41
+5A
+81
+BE
+BE
+0D
+2D
+A2
+E0
+6A
+82
+4A
+11
+A0
+0D
+F1
+B6
+98
+A7
+23
+FD
+AE
+4B
+07
+67
+17
+C4
+EB
+BD
+CC
+FD
+D5
+53
+16
+89
+BB
+33
+39
+77
+10
+17
+E4
+51
+79
+84
+F9  //iocsr CRC signature
+EF
+00  //iocsr frame start (start dword) 2
+00
+00
+00
+F0  //iocsr data start
+AB
+A3
+DB
+09
+01
+1B
+83
+F4
+E5
+69
+DB
+04
+70
+51
+2E
+C8
+03
+48
+81
+85
+30
+D3
+21
+13
+36
+50
+57
+E5
+21
+AB
+73
+6C
+EB
+0B
+9B
+95
+66
+45
+A0
+9F
+64
+EE
+3D
+36
+BE
+A7
+7B
+87
+16
+CB
+81
+3A
+83
+4A
+E9
+85
+BE
+E8
+49
+49
+3E
+37
+E6
+77
+21
+46
+BE
+FC
+4F
+DC
+3E
+36
+4E
+17
+AA
+F5
+39
+27
+8A
+91
+E4
+13
+1C
+A5
+01
+83
+D9
+C5
+5F
+35
+B1
+BA
+70
+1B
+1F
+05
+51
+AA
+81
+E1
+6F
+60
+68
+60
+F6
+A9
+3F
+F4
+3C
+E0
+23
+A1
+75
+54
+97
+97
+F3
+9D
+13
+E5
+26
+C0
+F9
+34
+AB
+18
+46
+36
+80
+5F
+7B
+BB
+DA
+5C
+1B
+84
+5C
+19
+3A
+D4
+AC
+B1
+1F
+EC
+5D
+4E
+6F
+E9
+CF
+39
+3F
+E8
+E9
+12
+86
+1E
+4B
+BF
+0F
+4A
+B6
+BC
+C9
+97
+2C
+64
+11
+AB
+5F
+CF
+B5
+80
+C9
+C1
+CD
+7B
+F4
+35
+D3
+7C
+D3
+29
+4E
+D7
+4D
+C1
+02
+86
+5C
+EC
+F7
+61
+54
+F2
+A2
+54
+2B
+6A
+89
+80
+1C
+F8
+33
+8B
+EF
+B5
+59
+18
+A7
+51
+65
+E6
+41
+5A
+81
+BE
+BE
+0D
+2D
+A2
+E0
+6A
+82
+4A
+11
+A0
+0D
+F1
+B6
+98
+A7
+23
+FD
+AE
+4B
+07
+67
+17
+C4
+EB
+BD
+CC
+FD
+D5
+53
+16
+89
+BB
+33
+39
+77
+10
+17
+E4
+51
+79
+84
+F9  //iocsr CRC signature
+EF
+00  //iocsr frame start (start dword) 1
+00
+00
+00
+F0  //iocsr data start
+AB
+A3
+DB
+09
+01
+1B
+83
+F4
+E5
+69
+DB
+04
+70
+51
+2E
+C8
+03
+48
+81
+85
+30
+D3
+21
+13
+36
+50
+57
+E5
+21
+AB
+73
+6C
+EB
+0B
+9B
+95
+66
+45
+A0
+9F
+64
+EE
+3D
+36
+BE
+A7
+7B
+87
+16
+CB
+81
+3A
+83
+4A
+E9
+85
+BE
+E8
+49
+49
+3E
+37
+E6
+77
+21
+46
+BE
+FC
+4F
+DC
+3E
+36
+4E
+17
+AA
+F5
+39
+27
+8A
+91
+E4
+13
+1C
+A5
+01
+83
+D9
+C5
+5F
+35
+B1
+BA
+70
+1B
+1F
+05
+51
+AA
+81
+E1
+6F
+60
+68
+60
+F6
+A9
+3F
+F4
+3C
+E0
+23
+A1
+75
+54
+97
+97
+F3
+9D
+13
+E5
+26
+C0
+F9
+34
+AB
+18
+46
+36
+80
+5F
+7B
+BB
+DA
+5C
+1B
+84
+5C
+19
+3A
+D4
+AC
+B1
+1F
+EC
+5D
+4E
+6F
+E9
+CF
+39
+3F
+E8
+E9
+12
+86
+1E
+4B
+BF
+0F
+4A
+B6
+BC
+C9
+97
+2C
+64
+11
+AB
+5F
+CF
+B5
+80
+C9
+C1
+CD
+7B
+F4
+35
+D3
+7C
+D3
+29
+4E
+D7
+4D
+C1
+02
+86
+5C
+EC
+F7
+61
+54
+F2
+A2
+54
+2B
+6A
+89
+80
+1C
+F8
+33
+8B
+EF
+B5
+59
+18
+A7
+51
+65
+E6
+41
+5A
+81
+BE
+BE
+0D
+2D
+A2
+E0
+6A
+82
+4A
+11
+A0
+0D
+F1
+B6
+98
+A7
+23
+FD
+AE
+4B
+07
+67
+17
+C4
+EB
+BD
+CC
+FD
+D5
+53
+16
+89
+BB
+33
+39
+77
+10
+17
+E4
+51
+79
+84
+F9  //iocsr CRC signature
+EF
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+FF  // filler
+00  //core frame start (start dword) 6
+00
+99
+E0
+0E  //core data start
+EE
+EE
+EE
+0E
+EE
+EE
+EE
+0E
+EE
+EE
+EE
+0E
+EE
+EE
+EE
+0E
+EE
+EE
+EE
+0E
+EE
+EE
+EE
+3D  //core frame Random number
+D9
+52  //core frame CRC signature
+7E  //core frame end
+00  //core frame start (start dword) 5
+00
+01
+90
+01  //core data start
+11
+11
+11
+01
+11
+11
+11
+01
+11
+11
+11
+01
+11
+11
+11
+01
+11
+11
+11
+01
+11
+11
+11
+01
+11
+11
+11
+01
+11
+11
+11
+C5  //core frame Random number
+52
+2E  //core frame CRC signature
+88  //core frame end
+00  //core frame start (start dword) 4
+00
+E8
+E0
+09  //core data start
+99
+99
+99
+09
+99
+99
+99
+09
+99
+99
+99
+09
+99
+99
+99
+09
+99
+99
+99
+09
+99
+99
+99
+DF  //core frame Random number
+D1
+86  //core frame CRC signature
+B5  //core frame end
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+FF  // filler to compensate switch region state
+00  //core frame start (start dword) 3
+00
+8C
+50
+8E  //core data start
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+8E
+6F  //core frame Random number
+69
+F1  //core frame CRC signature
+F5  //core frame end
+00  //core frame start (start dword) 2
+00
+02
+D0
+04  //core data start
+41
+41
+41
+04
+41
+41
+41
+04
+41
+41
+41
+04
+41
+41
+41
+04
+41
+41
+41
+04
+41
+41
+41
+04
+41
+41
+41
+04
+41
+41
+41
+04
+41
+41
+41
+04
+41
+41
+41
+22  //core frame Random number
+E8
+35  //core frame CRC signature
+72  //core frame end
+00  //core frame start (start dword) 1
+00
+E4
+50
+C9  //core data start
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+C9
+05  //core frame Random number
+1B
+CE  //core frame CRC signature
+02  //core frame end
+FF  //post-amble
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
+FF
